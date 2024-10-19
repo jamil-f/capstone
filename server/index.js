@@ -3,6 +3,15 @@ const app = express();
 const port = process.env.PORT || 3000;
 const { client } = require("./db");
 client.connect();
+const path = require("path");
+
+// // Serve static files from the React app (after building the React app)
+// app.use(express.static(path.join(__dirname, "../client/build")));
+
+// // Catch-all route to send back index.html for any non-API routes
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+// });
 
 app.use(express.json());
 

@@ -1,18 +1,24 @@
 import { useState, useEffect } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import Users from "./pages/Users";
+import ReviewList from "./components/ReviewList";
+import ReviewForm from "./components/ReviewForm";
 import Businesses from "./pages/Businesses";
 import CreateReview from "./pages/CreateReview";
 import Home from "./pages/Home";
+
 
 function App() {
   const [auth, setAuth] = useState({});
   const [users, setUsers] = useState([]);
   const [businesses, setBusinesses] = useState([]);
   const [reviews, setReviews] = useState([]);
-
+  const [selectedBusiness, setSelectedBusiness] = useState(null);
+  
   useEffect(() => {
     attemptLoginWithToken();
+    fetchReviews();
+    fetchBusinesses();
   }, []);
 
   const attemptLoginWithToken = async () => {
@@ -31,6 +37,25 @@ function App() {
       }
     }
   };
+
+
+  //Fetch Reviews
+  const fetchReviews = async () => {
+    const response = await fetch('/api/reviews'); // Fetch reviews from the API
+    const json = await response.json();
+    if (response.ok) {
+      setReviews(json); // Update reviews state
+    }
+  };
+//Fetch
+  const fetchBusinesses = async () => {
+    const response = await fetch('/api/businesses');
+    const json = await response.json();
+    if (response.ok) {
+      setBusinesses(json);
+    }
+  }
+
 
   const authAction = async (credentials, mode) => {
     const response = await fetch(`/api/auth/${mode}`, {
@@ -54,7 +79,7 @@ function App() {
     window.localStorage.removeItem("token");
     setAuth({});
   };
-
+console.log("selectedBusiness", selectedBusiness);
   return (
     <>
       <h1>Acme Business Reviews</h1>
@@ -87,7 +112,7 @@ function App() {
           element={<Businesses businesses={businesses} />}
         />
         <Route path="/users" element={<Users users={users} />} />
-        {!!auth.id && <Route path="/createReview" element={<CreateReview />} />}
+        {/* {!!auth.id && <Route path="/createReview" element={<CreateReview businessId={selectedBusiness?.id} userId={auth.id}/>} />} */}
       </Routes>
     </>
   );

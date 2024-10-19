@@ -1,16 +1,46 @@
 const { client } = require("./client");
 
-const { createUser, fetchUsers } = require("./index.js");
+const { createUser, fetchUsers, createBusiness } = require("./index.js");
 
 const createTables = async () => {
   const SQL = `
-    DROP TABLE IF EXISTS users;
+    DROP TABLE IF EXISTS users cascade;
+    DROP TABLE IF EXISTS comments;
+    DROP TABLE IF EXISTS reviews;
+    DROP TABLE IF EXISTS businesses;
+    
     CREATE TABLE users(
       id UUID PRIMARY KEY,
       username VARCHAR(20) UNIQUE NOT NULL,
       password VARCHAR(255) NOT NULL
     );
-  `;
+
+    CREATE TABLE reviews (
+      id SERIAL PRIMARY KEY,
+      user_id UUID REFERENCES users(id),
+      item_id UUID NOT NULL,
+      review_text TEXT NOT NULL,
+      rating INTEGER CHECK (rating >= 1 and rating <= 5),
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      UNIQUE (user_id, item_id)
+    );
+
+    CREATE TABLE comments (
+      id SERIAL PRIMARY KEY,
+      review_id INTEGER REFERENCES reviews(id),
+      user_id UUID REFERENCES users(id),
+      comment_text TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE businesses (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(50) UNIQUE NOT NULL,
+      owner VARCHAR(100),
+      establishedYear INT
+    )
+`;
+  
   await client.query(SQL);
 };
 
@@ -28,6 +58,11 @@ const init = async () => {
     createUser({ username: "curly", password: "c_pw" }),
   ]);
 
+  await Promise.all([
+    createBusiness({ name: "Call of Duty", owner: "Activision", establishedYear: 2003}),
+    createBusiness({ name: "Halo", owner: "Microsoft", establishedYear: 2001})
+
+  ])
   console.log(await fetchUsers());
   client.end();
 };
