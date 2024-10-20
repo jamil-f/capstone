@@ -1,4 +1,3 @@
-// UserDetail.jsx
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -21,7 +20,7 @@ const UserDetail = () => {
   };
 
   const fetchUserReviews = async () => {
-    const response = await fetch(`/api/reviews?userId=${id}`); // Fetch user reviews
+    const response = await fetch(`/api/reviews/user/${id}`); // Fetch user reviews
     const json = await response.json();
     if (response.ok) {
       setReviews(json);
@@ -34,11 +33,17 @@ const UserDetail = () => {
     <div>
       <h1>{user.username}</h1>
       <h2>Reviews:</h2>
-      <ul>
-        {reviews.map((review) => (
-          <li key={review.id}>{review.content}</li>
-        ))}
-      </ul>
+      {reviews.length === 0 ? (
+        <p>No reviews found.</p>
+      ) : (
+        <ul>
+          {reviews.map((review) => (
+            <li key={review.id}>
+              <strong>{review.business_name}</strong>: {review.review_text} <em>Rating: {review.rating}</em>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

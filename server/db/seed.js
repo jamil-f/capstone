@@ -1,6 +1,6 @@
 const { client } = require("./client");
 
-const { createUser, fetchUsers, createBusiness } = require("./index.js");
+const { createUser, fetchUsers, createBusiness, createReview } = require("./index.js");
 
 const createTables = async () => {
   const SQL = `
@@ -58,11 +58,14 @@ const init = async () => {
     createUser({ username: "curly", password: "c_pw" }),
   ]);
 
-  await Promise.all([
-    createBusiness({ name: "Call of Duty", owner: "Activision", establishedYear: 2003}),
-    createBusiness({ name: "Halo", owner: "Microsoft", establishedYear: 2001})
+  const business1 = await createBusiness({ name: "Call of Duty", owner: "Activision", establishedYear: 2003 });
+  const business2 = await createBusiness({ name: "Halo", owner: "Microsoft", establishedYear: 2001 });
 
-  ])
+  await Promise.all([
+    createReview({ userId: moe.id, businessId: business1.id, text: "Great game!", rating: 5 }),
+    createReview({ userId: lucy.id, businessId: business2.id, text: "Not my favorite.", rating: 3 }),
+  ]);
+
   console.log(await fetchUsers());
   client.end();
 };

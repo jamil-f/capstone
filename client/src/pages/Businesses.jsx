@@ -12,7 +12,8 @@ const Businesses = ({ businesses }) => {
                 {business.name}
               </Link>
             </strong> 
-            - Owned by {business.owner} (Established: {business.establishedyear})
+            - Owned by {business.owner} (Established: {business.establishedyear}) 
+            - Average Rating: {typeof business.average_rating === 'number' ? business.average_rating.toFixed(1) : 'No ratings yet'} / 10
           </li>
         ))}
       </ul>
@@ -20,4 +21,4 @@ const Businesses = ({ businesses }) => {
   );
 };
 
-export default Businesses;
+export default Businesses;  // Ensure this line is present

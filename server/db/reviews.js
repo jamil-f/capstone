@@ -15,15 +15,28 @@ const createReview = async ({ userId, businessId, text, rating }) => {
 
 const getReviews = async () => {
     const SQL = `
-        SELECT * FROM reviews;
+        SELECT reviews.*, businesses.name AS business_name
+        FROM reviews
+        JOIN businesses ON reviews.business_id = businesses.id;
     `;
     const response = await client.query(SQL);
     return response.rows;
 };
 
+const fetchReviewsByUserId = async (userId) => {
+    const SQL = `
+        SELECT reviews.*, businesses.name AS business_name
+        FROM reviews
+        JOIN businesses ON reviews.business_id = businesses.id
+        WHERE reviews.user_id=$1;
+    `;
+    const response = await client.query(SQL, [userId]);
+    return response.rows;
+};
+
 const updateReview = async (reviewId, { text, score }) => {
     const SQL = `
-        UPDATE reviews SET text=$1, score=$2 WHERE id=$3 RETURNING *
+        UPDATE reviews SET review_text=$1, rating=$2 WHERE id=$3 RETURNING *
     `;
     const response = await client.query(SQL, [text, score, reviewId]);
     return response.rows[0];
@@ -36,16 +49,10 @@ const deleteReview = async (reviewId) => {
     await client.query(SQL, [reviewId]);
 };
 
-const fetchReviewsByUserId = async (userId) => {
-    const SQL = `SELECT * FROM reviews WHERE user_id=$1;`;
-    const response = await client.query(SQL, [userId]);
-    return response.rows;
-};
-
 const findExistingReview = async (businessId, userId) => {
     const SQL = `SELECT * FROM reviews WHERE business_id=$1 AND user_id=$2;`;
     const response = await client.query(SQL, [businessId, userId]);
     return response.rows[0]; // Return the existing review if found
-  };
+};
 
-module.exports = { createReview, getReviews, updateReview, deleteReview,fetchReviewsByUserId, findExistingReview };
+module.exports = { createReview, getReviews, updateReview, deleteReview, fetchReviewsByUserId, findExistingReview };
