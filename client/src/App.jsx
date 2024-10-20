@@ -6,6 +6,8 @@ import ReviewForm from "./components/ReviewForm";
 import Businesses from "./pages/Businesses";
 import CreateReview from "./pages/CreateReview";
 import Home from "./pages/Home";
+import BusinessDetail from "./components/BusinessDetail";
+import UserDetail from "./components/User.Detail";
 
 
 function App() {
@@ -19,7 +21,22 @@ function App() {
     attemptLoginWithToken();
     fetchReviews();
     fetchBusinesses();
+    fetchUsersData();
   }, []);
+
+  const fetchUsersData = async () => {
+    try {
+      const response = await fetch('/api/users'); // Ensure this matches your API endpoint
+      const json = await response.json();
+      if (response.ok) {
+        setUsers(json); // Update users state
+      } else {
+        console.error("Failed to fetch users:", json);
+      }
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
 
   const attemptLoginWithToken = async () => {
     const token = window.localStorage.getItem("token");
@@ -111,8 +128,13 @@ console.log("selectedBusiness", selectedBusiness);
           path="/businesses"
           element={<Businesses businesses={businesses} />}
         />
+         <Route
+          path="/businesses/:id"
+          element={<BusinessDetail />}
+        />
+        <Route path="/users/:id" element={<UserDetail />} />
         <Route path="/users" element={<Users users={users} />} />
-        {/* {!!auth.id && <Route path="/createReview" element={<CreateReview businessId={selectedBusiness?.id} userId={auth.id}/>} />} */}
+        {!!auth.id && <Route path="/createReview" element={<CreateReview businessId={selectedBusiness?.id} userId={auth.id}/>} />}
       </Routes>
     </>
   );

@@ -55,6 +55,15 @@ const fetchUsers = async () => {
   return response.rows;
 };
 
+const fetchUserById = async (id) => {
+  const SQL = `SELECT id, username FROM users WHERE id=$1;`;
+  const response = await client.query(SQL, [id]);
+  if (!response.rows.length) {
+    throw new Error("User not found");
+  }
+  return response.rows[0];
+};
+
 const authenticate = async ({ username, password }) => {
   const SQL = `
     SELECT id, username, password FROM users WHERE username=$1;
@@ -72,4 +81,4 @@ const authenticate = async ({ username, password }) => {
   return { token };
 };
 
-module.exports = { createUser, findUserWithToken, fetchUsers, authenticate };
+module.exports = { createUser, findUserWithToken, fetchUsers, authenticate, fetchUserById };

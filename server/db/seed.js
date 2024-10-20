@@ -4,11 +4,18 @@ const { createUser, fetchUsers, createBusiness } = require("./index.js");
 
 const createTables = async () => {
   const SQL = `
-    DROP TABLE IF EXISTS users cascade;
     DROP TABLE IF EXISTS comments;
     DROP TABLE IF EXISTS reviews;
     DROP TABLE IF EXISTS businesses;
-    
+    DROP TABLE IF EXISTS users cascade;
+
+    CREATE TABLE businesses (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(50) UNIQUE NOT NULL,
+      owner VARCHAR(100),
+      establishedYear INT
+    );
+
     CREATE TABLE users(
       id UUID PRIMARY KEY,
       username VARCHAR(20) UNIQUE NOT NULL,
@@ -18,11 +25,11 @@ const createTables = async () => {
     CREATE TABLE reviews (
       id SERIAL PRIMARY KEY,
       user_id UUID REFERENCES users(id),
-      item_id UUID NOT NULL,
+      business_id INTEGER REFERENCES businesses(id), -- Ensure businesses table is created first
       review_text TEXT NOT NULL,
       rating INTEGER CHECK (rating >= 1 and rating <= 5),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      UNIQUE (user_id, item_id)
+      UNIQUE (user_id, business_id) -- Ensure each user can only review a business once
     );
 
     CREATE TABLE comments (
@@ -32,14 +39,7 @@ const createTables = async () => {
       comment_text TEXT NOT NULL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
-
-    CREATE TABLE businesses (
-      id SERIAL PRIMARY KEY,
-      name VARCHAR(50) UNIQUE NOT NULL,
-      owner VARCHAR(100),
-      establishedYear INT
-    )
-`;
+  `;
   
   await client.query(SQL);
 };

@@ -19,4 +19,13 @@ const fetchBusinesses = async () => {
     return response.rows;
 }
 
-module.exports = { createBusiness,fetchBusinesses };
+const fetchBusinessById = async (id) => {
+    const SQL = `
+    SELECT * FROM businesses WHERE id = $1;
+    `;
+    const response = await client.query(SQL, [id]);
+    return response.rows[0];  // Return the first matching business
+}
+
+
+module.exports = { createBusiness,fetchBusinesses, fetchBusinessById };

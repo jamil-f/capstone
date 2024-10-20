@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Businesses = ({ businesses }) => {
   return (
     <div>
@@ -5,7 +7,12 @@ const Businesses = ({ businesses }) => {
       <ul>
         {businesses.map((business) => (
           <li key={business.id}>
-            <strong>{business.name}</strong> - Owned by {business.owner} (Established: {business.establishedyear})
+            <strong>
+              <Link to={`/businesses/${business.id}`}>
+                {business.name}
+              </Link>
+            </strong> 
+            - Owned by {business.owner} (Established: {business.establishedyear})
           </li>
         ))}
       </ul>

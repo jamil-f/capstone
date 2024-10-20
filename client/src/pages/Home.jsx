@@ -16,7 +16,7 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
         <ul>
           {businesses.slice(0, 3).map((business) => (
             <li key={business.id}>
-              <strong>{business.name}</strong> - Category: {business.category || "General"}
+              <strong>{business.name}</strong> - Category: {business.category || "Video Game"}
               <br />
               Average Rating: {averageRating}
             </li>
