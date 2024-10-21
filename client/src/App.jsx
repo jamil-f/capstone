@@ -7,7 +7,7 @@ import Businesses from "./pages/Businesses";
 import CreateReview from "./pages/CreateReview";
 import Home from "./pages/Home";
 import BusinessDetail from "./components/BusinessDetail";
-import UserDetail from "./components/User.Detail";
+import UserDetail from "./components/UserDetail";
 
 
 function App() {

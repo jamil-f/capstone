@@ -5,6 +5,7 @@ import axios from 'axios';
 const BusinessDetail = () => {
   const { id } = useParams();  // This will get the business ID from the URL
   const [business, setBusiness] = useState(null);  // State to store business data
+  const [reviews, setReviews] = useState([])
   const [loading, setLoading] = useState(true);    // Loading state
   const [error, setError] = useState(null);        // Error state
   

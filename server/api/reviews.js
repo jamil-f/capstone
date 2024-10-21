@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const { createReview, getReviews, updateReview, deleteReview, fetchReviewsByUserId, findExistingReview } = require("../db/reviews"); // Adjust the import based on your db structure
+const { createReview, getReviews, updateReview, deleteReview, fetchReviewsByBusinessId, findExistingReview, fetchReviewsByUserId } = require("../db/reviews"); // Adjust the import based on your db structure
 
 // Create a review
 router.post("/", async (req, res, next) => {
+    // console.log('req.body.reviewText', req.body.review_text)
     try {
-      console.log('Request body:', req.body);
+    //   console.log('Request body:', req.body);
       
       // Check if the user has already submitted a review for this item
-      const existingReview = await findExistingReview(req.body.businessId, req.body.userId);
+      const existingReview = await findExistingReview(req.body.userId, req.body.businessId);
       if (existingReview) {
         return res.status(400).json({ message: "You have already submitted a review for this item." });
       }
@@ -17,8 +18,8 @@ router.post("/", async (req, res, next) => {
       const review = await createReview({
         userId: req.body.userId, 
         businessId: req.body.businessId, // Ensure you pass businessId here
-        text: req.body.text,
-        score: req.body.rating // Change 'rating' if needed
+        review_text: req.body.review_text,
+        rating: req.body.rating // Change 'rating' if needed
       }); 
       res.status(201).send(review);
     } catch (error) {
@@ -39,9 +40,10 @@ router.get("/", async (req, res, next) => {
 
 // Fetch reviews by user ID
 router.get("/user/:userId", async (req, res, next) => {
-    const userId = req.params.userId; // Get userId from URL parameters
+    const { userId } = req.params;
     try {
         const reviews = await fetchReviewsByUserId(userId);
+        console.log(reviews)
         res.status(200).send(reviews);
     } catch (error) {
         next(error);
@@ -63,11 +65,12 @@ router.put("/:reviewId", async (req, res, next) => {
 
 // Delete a review
 router.delete("/:reviewId", async (req, res, next) => {
+    const userId = req.user.id; 
     try {
-        await deleteReview(req.params.reviewId);
-        res.status(204).send(); // No content
+        await deleteReview(req.params.reviewId, userId);
+        res.status(204).send(); 
     } catch (error) {
-        next(error);
+        next(error); 
     }
 });
 

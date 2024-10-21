@@ -43,7 +43,7 @@ const CreateReview = ({ userId }) => {
   
     try {
       const response = await axios.post('/api/reviews', {
-        text: reviewText,
+        review_text: reviewText,
         rating,
         businessId: selectedBusiness, // Send selected business ID
         userId,
