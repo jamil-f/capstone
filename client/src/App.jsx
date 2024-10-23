@@ -1,21 +1,25 @@
 import { useState, useEffect } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import Users from "./pages/Users";
 import ReviewList from "./components/ReviewList";
 import ReviewForm from "./components/ReviewForm";
 import Businesses from "./pages/Businesses";
 import CreateReview from "./pages/CreateReview";
+import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Register from "./pages/Register";
 import BusinessDetail from "./components/BusinessDetail";
 import UserDetail from "./components/UserDetail";
 
 
 function App() {
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState(null);
   const [users, setUsers] = useState([]);
   const [businesses, setBusinesses] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [selectedBusiness, setSelectedBusiness] = useState(null);
+
+  const navigate = useNavigate();
   
   useEffect(() => {
     attemptLoginWithToken();
@@ -86,7 +90,8 @@ function App() {
     const json = await response.json();
     if (response.ok) {
       window.localStorage.setItem("token", json.token);
-      attemptLoginWithToken();
+      await attemptLoginWithToken();
+      navigate("/");
     } else {
       throw json;
     }
@@ -94,50 +99,60 @@ function App() {
 
   const logout = () => {
     window.localStorage.removeItem("token");
-    setAuth({});
+    setAuth(null);
+    navigate("/");
   };
 console.log("selectedBusiness", selectedBusiness);
-  return (
-    <>
-      <h1>Acme Business Reviews</h1>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/businesses">Businesses ({businesses.length})</Link>
-        <Link to="/users">Users ({users.length})</Link>
-        {auth.id ? (
+return (
+  <>
+    <h1>Acme Business Reviews</h1>
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/businesses">Businesses ({businesses.length})</Link>
+      <Link to="/users">Users ({users.length})</Link>
+      {!auth && <Link to="/login">Login</Link>}  {/* Conditionally show */}
+      {!auth && <Link to="/signup">Signup</Link>}  {/* Conditionally show */}
+      {auth && (
+        <>
           <Link to="/createReview">Create Review</Link>
-        ) : (
-          <Link to="/">Register/Login</Link>
-        )}
-      </nav>
-      {auth.id && <button onClick={logout}>Logout {auth.username}</button>}
-      <Routes>
+          <button onClick={logout}>Logout {auth.username}</button>
+        </>
+      )}
+    </nav>
+
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Home
+            authAction={authAction}
+            auth={auth}
+            businesses={businesses}
+            users={users}
+            reviews={reviews}
+          />
+        }
+      />
+      <Route path="/businesses" element={<Businesses businesses={businesses} />} />
+      <Route path="/businesses/:id" element={<BusinessDetail />} />
+      <Route path="/users/:id" element={<UserDetail />} />
+      <Route path="/users" element={<Users users={users} />} />
+      <Route path="/login" element={<Login setAuth={setAuth} />} />
+      <Route path="/signup" element={<Register setAuth={setAuth} />} />
+      {auth && (
         <Route
-          path="/"
+          path="/createReview"
           element={
-            <Home
-              authAction={authAction}
-              auth={auth}
-              businesses={businesses}
-              users={users}
-              reviews={reviews}
+            <CreateReview
+              businessId={selectedBusiness?.id}
+              userId={auth.id}
             />
           }
         />
-        <Route
-          path="/businesses"
-          element={<Businesses businesses={businesses} />}
-        />
-         <Route
-          path="/businesses/:id"
-          element={<BusinessDetail />}
-        />
-        <Route path="/users/:id" element={<UserDetail />} />
-        <Route path="/users" element={<Users users={users} />} />
-        {!!auth.id && <Route path="/createReview" element={<CreateReview businessId={selectedBusiness?.id} userId={auth.id}/>} />}
-      </Routes>
-    </>
-  );
+      )}
+    </Routes>
+  </>
+);
 }
 
 export default App;

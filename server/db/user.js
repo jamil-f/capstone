@@ -65,6 +65,7 @@ const fetchUserById = async (id) => {
 };
 
 const authenticate = async ({ username, password }) => {
+  console.log("authenticating user;", username);
   const SQL = `
     SELECT id, username, password FROM users WHERE username=$1;
   `;
