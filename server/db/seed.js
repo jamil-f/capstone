@@ -62,8 +62,8 @@ const init = async () => {
   const business2 = await createBusiness({ name: "Halo", owner: "Microsoft", establishedYear: 2001 });
 
   await Promise.all([
-    createReview({ userId: moe.id, businessId: business1.id, text: "Great game!", rating: 5 }),
-    createReview({ userId: lucy.id, businessId: business2.id, text: "Not my favorite.", rating: 3 }),
+    createReview({ userId: moe.id, businessId: business1.id, review_text: "Great game!", rating: 5 }),
+    createReview({ userId: lucy.id, businessId: business2.id, review_text: "Not my favorite.", rating: 3 }),
   ]);
 
   console.log(await fetchUsers());
