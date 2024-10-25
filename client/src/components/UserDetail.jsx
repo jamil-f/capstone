@@ -42,7 +42,7 @@ const UserDetail = () => {
             <ReviewItem
               key={review.id}
               review={review}
-              refreshReviews={fetchUserReviews} // Pass refresh function to ReviewItem
+              fetchReviews={fetchUserReviews} // Pass refresh function to ReviewItem
             />
           ))}
         </ul>

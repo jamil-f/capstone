@@ -25,6 +25,15 @@ async function findExistingReview(userId, businessId) {
     }
   }
 
+  const fetchReviewById = async (reviewId) => {
+    const SQL = `SELECT * FROM reviews WHERE id = $1;`;
+    const response = await client.query(SQL, [reviewId]);
+    if (!response.rows.length) {
+      throw new Error("Review not found");
+    }
+    return response.rows[0];
+  };
+
 // Function to fetch reviews by business ID
 async function fetchReviewsByUserId(userId) {
     const { rows } = await client.query(
@@ -61,11 +70,13 @@ const createReview = async ({ userId, businessId, review_text, rating }) => {
 };
 
 const getReviews = async () => {
-    const SQL = `
-        SELECT * FROM reviews;
-    `;
-    const response = await client.query(SQL);
-    return response.rows;
+  const SQL = `
+    SELECT reviews.*, businesses.name AS business_name 
+    FROM reviews
+    JOIN businesses ON reviews.business_id = businesses.id;
+  `;
+  const response = await client.query(SQL);
+  return response.rows;
 };
 
 const updateReview = async (reviewId, { text, rating }) => {
@@ -85,4 +96,12 @@ const deleteReview = async (reviewId) => {
 
 
 
-module.exports = { createReview, getReviews,fetchReviewsByUserId, updateReview, deleteReview, findExistingReview, fetchReviewsByBusinessId };
+module.exports = {
+  createReview,
+  getReviews,fetchReviewsByUserId,
+  updateReview,
+  deleteReview,
+  findExistingReview,
+  fetchReviewsByBusinessId,
+  fetchReviewById
+};

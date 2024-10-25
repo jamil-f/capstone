@@ -36,7 +36,8 @@ const ReviewList = () => {
                         <ReviewItem
                             key={review.id}
                             review={review}
-                            refreshReviews={fetchReviews} // Pass the refresh function
+                            user={user}
+                            fetchReviews={fetchReviews} // Pass the refresh function
                         />
                     ))}
                 </ul>

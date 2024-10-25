@@ -1,28 +1,32 @@
 import React from 'react';
 import axios from 'axios';
-import ReviewEdit from './ReviewEdit'; // Edit component
 
-const ReviewItem = ({ review, refreshReviews }) => {
-    const handleDelete = async () => {
-        try {
-            await axios.delete(`http://localhost:3000/api/reviews/${review.id}`);
-            alert('Review deleted successfully!');
-            refreshReviews(); // Refresh the reviews list
-        } catch (error) {
-            console.error('Failed to delete review:', error);
-            alert('Could not delete the review. Please try again.');
-        }
-    };
-    console.log('Review ID:', review.id);
+const ReviewItem = ({ review, user, fetchReviews }) => {
+  const handleDelete = async (reviewId) => {
+    try {
+      await axios.delete(`/api/reviews/${reviewId}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
+      alert('Review deleted successfully');
+      if (typeof fetchReviews === 'function') {
+        fetchReviews(); // Call the refresh function
+      }
+    } catch (error) {
+      console.error('Failed to delete review:', error);
+    }
+  };
+  
 
-    return (
-        <li>
-          <h3>Business: {review.business_name}</h3>
-          <p>Review: {review.review_text}</p>
-          <p>Rating: {review.rating}</p>
-          <button onClick={handleDelete}>Delete</button>
-        </li>
-      );
-    };
+  return (
+    <div className="review-item">
+      <h3>{review.business_name}</h3> {/* Display the business name */}
+      <p>{review.review_text}</p>
+      <p>Rating: {review.rating}/5</p>
+      {user?.id === review.user_id && (
+        <button onClick={() => handleDelete(review.id)}>Delete</button>
+      )}
+    </div>
+  );
+};
 
 export default ReviewItem;

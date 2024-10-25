@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-
 const { client } = require("../db");
+const { authenticateUser } = require("../db/user");
 
 const {
   createReview,
@@ -10,7 +10,8 @@ const {
   deleteReview,
   fetchReviewsByBusinessId,
   findExistingReview,
-  fetchReviewsByUserId
+  fetchReviewsByUserId,
+  fetchReviewById
 } = require("../db/reviews"); // Adjust the import based on your db structure
 
 // Create a review
@@ -75,28 +76,18 @@ router.put("/:reviewId", async (req, res, next) => {
 
 
 // DELETE review by ID
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
-  console.log('ID received for deletion:', id);
-
-  try {
-    const result = await client.query(
-      'DELETE FROM reviews WHERE id = $1 RETURNING *',
-      [id]
-    );
-
-    if (result.rowCount === 0) {
-      console.log('No review found with this ID');
-      return res.status(404).send({ error: 'Review not found' });
-    }
-
-    res.send({ message: 'Review deleted successfully' });
-  } catch (error) {
-    console.error('Error deleting review:', error);
-    res.status(500).send({ error: 'Failed to delete review' });
+router.delete('/:id', authenticateUser, async (req, res) => {
+  const reviewId = req.params.id;
+  const userId = req.user.id; // Extracted from the authenticated token
+  const review = await fetchReviewById(reviewId);
+  
+  if (review.user_id !== userId) {
+    return res.status(403).json({ message: 'Unauthorized to delete this review.' });
   }
+  
+  await deleteReview(reviewId);
+  res.status(200).json({ message: 'Review deleted successfully.' });
 });
-
 // Endpoint to fetch existing reviews for a specific item
 router.get("/:itemId", async (req, res, next) => {
   try {

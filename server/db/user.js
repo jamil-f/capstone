@@ -82,4 +82,20 @@ const authenticate = async ({ username, password }) => {
   return { token };
 };
 
-module.exports = { createUser, findUserWithToken, fetchUsers, authenticate, fetchUserById };
+const authenticateUser = async (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1]; // Extract token from header
+  if (!token) {
+    return res.status(401).json({ message: 'Unauthorized, token missing' });
+  }
+  
+  try {
+    const user = await findUserWithToken(token);
+    req.user = user; // Attach user to the request
+    next();
+  } catch (error) {
+    res.status(401).json({ message: 'Unauthorized, invalid token' });
+  }
+};
+
+
+module.exports = { createUser, findUserWithToken, fetchUsers, authenticate, fetchUserById, authenticateUser };
