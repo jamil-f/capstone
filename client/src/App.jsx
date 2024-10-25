@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, Route, Routes, useNavigate, Navigate } from "react-router-dom";
 import Users from "./pages/Users";
 import ReviewList from "./components/ReviewList";
 import ReviewForm from "./components/ReviewForm";
@@ -110,8 +110,8 @@ return (
       <Link to="/">Home</Link>
       <Link to="/businesses">Businesses ({businesses.length})</Link>
       <Link to="/users">Users ({users.length})</Link>
-      {!auth && <Link to="/login">Login</Link>}  {/* Conditionally show */}
-      {!auth && <Link to="/signup">Signup</Link>}  {/* Conditionally show */}
+      {!auth && <Link to="/login">Login</Link>}
+      {!auth && <Link to="/signup">Signup</Link>}
       {auth && (
         <>
           <Link to="/createReview">Create Review</Link>
@@ -139,17 +139,19 @@ return (
       <Route path="/users" element={<Users users={users} />} />
       <Route path="/login" element={<Login setAuth={setAuth} />} />
       <Route path="/signup" element={<Register setAuth={setAuth} />} />
-      {auth && (
-        <Route
-          path="/createReview"
-          element={
+      <Route
+        path="/createReview"
+        element={
+          auth ? (
             <CreateReview
               businessId={selectedBusiness?.id}
               userId={auth.id}
             />
-          }
-        />
-      )}
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+      />
     </Routes>
   </>
 );
