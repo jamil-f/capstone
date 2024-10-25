@@ -64,17 +64,29 @@ router.get("/user/:userId", async (req, res, next) => {
 
 
 // Update a review
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticateUser, async (req, res) => {
   const { id } = req.params;
   const { review_text, rating } = req.body;
+  const userId = req.user.id; // Extract user ID from the authenticated token
   try {
-    const updatedReview = await updateReview(id, { review_text, rating });
-    if (updatedReview) {
-      res.status(200).json(updatedReview);
-    } else {
-      res.status(404).json({ message: 'Review not found' });
+    // Fetch the review by ID to verify ownership
+    const review = await fetchReviewById(id);
+
+    if (!review) {
+      return res.status(404).json({ message: 'Review not found' });
     }
+
+    // Ensure the authenticated user is the owner of the review
+    if (review.user_id !== userId) {
+      return res.status(403).json({ message: 'Unauthorized to edit this review.' });
+    }
+
+    // Proceed with the update
+    const updatedReview = await updateReview(id, { review_text, rating });
+
+    res.status(200).json(updatedReview);
   } catch (error) {
+    console.error('Error updating review:', error);
     res.status(500).json({ error: 'Failed to update the review' });
   }
 });

@@ -7,7 +7,16 @@ const ReviewEdit = ({ review, fetchReviews, setIsEditing }) => {
 
     const handleUpdate = async () => {
         try {
-            await axios.put(`/api/reviews/${review.id}`, { review_text: text, rating: rating });
+            const token = localStorage.getItem('token'); // Retrieve token from local storage
+            await axios.put(
+                `/api/reviews/${review.id}`,
+                { review_text: text, rating: rating },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Add token to request headers
+                    },
+                }
+            );
             fetchReviews(); // Refresh reviews
             setIsEditing(false); // Exit edit mode
         } catch (ex) {
