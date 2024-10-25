@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const port = process.env.PORT || 3000;
 const { client } = require("./db");
 client.connect();
@@ -14,7 +15,10 @@ const path = require("path");
 // });
 
 app.use(express.json());
+app.use(cors());
 
+const reviewsRouter = require('./api/reviews');
+app.use('/api/reviews', reviewsRouter);
 app.use("/api", require("./api"));
 
 app.use((err, req, res, next) => {

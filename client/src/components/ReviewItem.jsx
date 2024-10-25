@@ -1,19 +1,28 @@
 import React from 'react';
-import ReviewEdit from './ReviewEdit'; // This will be the edit component
+import axios from 'axios';
+import ReviewEdit from './ReviewEdit'; // Edit component
 
-const ReviewItem = ({ review }) => {
+const ReviewItem = ({ review, refreshReviews }) => {
     const handleDelete = async () => {
-        // Add delete logic here, using axios to call the DELETE endpoint
+        try {
+            await axios.delete(`http://localhost:3000/api/reviews/${review.id}`);
+            alert('Review deleted successfully!');
+            refreshReviews(); // Refresh the reviews list
+        } catch (error) {
+            console.error('Failed to delete review:', error);
+            alert('Could not delete the review. Please try again.');
+        }
     };
+    console.log('Review ID:', review.id);
 
     return (
         <li>
-            <p>{review.text}</p>
-            <p>Rating: {review.score}</p>
-            <ReviewEdit review={review} /> {/* Include the edit component */}
-            <button onClick={handleDelete}>Delete</button>
+          <h3>Business: {review.business_name}</h3>
+          <p>Review: {review.review_text}</p>
+          <p>Rating: {review.rating}</p>
+          <button onClick={handleDelete}>Delete</button>
         </li>
-    );
-};
+      );
+    };
 
 export default ReviewItem;

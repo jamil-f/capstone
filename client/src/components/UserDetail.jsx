@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ReviewItem from "./ReviewItem";
 
 const UserDetail = () => {
   const { id } = useParams(); // Get user ID from URL
@@ -38,10 +39,11 @@ const UserDetail = () => {
       ) : (
         <ul>
           {reviews.map((review) => (
-            <li key={review.id}>
-              <strong>{review.name}</strong>: {review.review_text}{" "}
-              <em>Rating: {review.rating}</em>
-            </li>
+            <ReviewItem
+              key={review.id}
+              review={review}
+              refreshReviews={fetchUserReviews} // Pass refresh function to ReviewItem
+            />
           ))}
         </ul>
       )}

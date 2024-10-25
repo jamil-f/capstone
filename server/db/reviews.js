@@ -28,12 +28,15 @@ async function findExistingReview(userId, businessId) {
 // Function to fetch reviews by business ID
 async function fetchReviewsByUserId(userId) {
     const { rows } = await client.query(
-      `SELECT * 
-      FROM businesses
-      JOIN reviews ON businesses.id = business_id
-      WHERE reviews.user_id = $1`,
-      [userId]
-    );
+      `SELECT reviews.id,
+      reviews.review_text,
+      reviews.rating,
+      businesses.name AS business_name
+     FROM reviews
+     JOIN businesses ON businesses.id = reviews.business_id
+     WHERE reviews.user_id = $1`,
+    [userId]
+  );
 //     const { rows } = await client.query(`
 //     SELECT DISTINCT ON (name, business_id)
 //         reviews.id AS review_id, 
@@ -45,7 +48,7 @@ async function fetchReviewsByUserId(userId) {
 //     JOIN businesses ON reviews.business_id = business_id
 //     WHERE reviews.user_id = $1
 //   `, [userId]);
-  console.log('rows', rows)
+  console.log('Fetched reviews:', rows);
     return rows;
   }
 
