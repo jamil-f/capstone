@@ -79,11 +79,11 @@ const getReviews = async () => {
   return response.rows;
 };
 
-const updateReview = async (reviewId, { text, rating }) => {
+const updateReview = async (reviewId, { review_text, rating }) => {
     const SQL = `
-        UPDATE reviews SET text=$1, rating=$2 WHERE id=$3 RETURNING *
+        UPDATE reviews SET review_text=$1, rating=$2 WHERE id=$3 RETURNING *;
     `;
-    const response = await client.query(SQL, [text, rating, reviewId]);
+    const response = await client.query(SQL, [review_text, rating, reviewId]);
     return response.rows[0];
 };
 

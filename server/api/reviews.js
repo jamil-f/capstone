@@ -64,13 +64,19 @@ router.get("/user/:userId", async (req, res, next) => {
 
 
 // Update a review
-router.put("/:reviewId", async (req, res, next) => {
-    try {
-        const updatedReview = await updateReview(req.params.reviewId, req.body);
-        res.status(200).send(updatedReview);
-    } catch (error) {
-        next(error);
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { review_text, rating } = req.body;
+  try {
+    const updatedReview = await updateReview(id, { review_text, rating });
+    if (updatedReview) {
+      res.status(200).json(updatedReview);
+    } else {
+      res.status(404).json({ message: 'Review not found' });
     }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update the review' });
+  }
 });
 
 
