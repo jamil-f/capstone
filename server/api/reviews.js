@@ -12,26 +12,22 @@ const {
   findExistingReview,
   fetchReviewsByUserId,
   fetchReviewById
-} = require("../db/reviews"); // Adjust the import based on your db structure
+} = require("../db/reviews"); 
 
 // Create a review
 router.post("/", async (req, res, next) => {
-    // console.log('req.body.reviewText', req.body.review_text)
     try {
-    //   console.log('Request body:', req.body);
       
-      // Check if the user has already submitted a review for this item
       const existingReview = await findExistingReview(req.body.userId, req.body.businessId);
       if (existingReview) {
         return res.status(400).json({ message: "You have already submitted a review for this item." });
       }
       
-      // Proceed to create a new review
       const review = await createReview({
         userId: req.body.userId, 
-        businessId: req.body.businessId, // Ensure you pass businessId here
+        businessId: req.body.businessId, 
         review_text: req.body.review_text,
-        rating: req.body.rating // Change 'rating' if needed
+        rating: req.body.rating 
       }); 
       res.status(201).send(review);
     } catch (error) {
@@ -48,6 +44,16 @@ router.get("/", async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+});
+// Fetchs reviews for BusinessListReviews
+router.get('/by-business', async (req, res) => {
+  const { businessId } = req.query;
+  try {
+    const reviews = await fetchReviewsByBusinessId(businessId);
+    res.json(reviews);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch reviews' });
+  }
 });
 
 // Fetch reviews by user ID

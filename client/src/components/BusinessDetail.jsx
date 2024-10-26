@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import BusinessListReviews from './BusinessListReviews';
 
 const BusinessDetail = () => {
   const { id } = useParams();
@@ -33,26 +34,25 @@ const BusinessDetail = () => {
       ).toFixed(1)
     : "No ratings yet";
 
-  return (
-    <div className="business-detail">
-      {business && (
-        <>
-          <h1>{business.name}</h1>
-          <img src={business.image_url} alt={`${business.name}`} style={{ width: '300px' }} />
-          <p>{business.description}</p>
-          <p>Rating: {averageRating} / 5</p>
-          <h2>Reviews:</h2>
-          <ul>
-            {business.reviews.map((review) => (
-              <li key={review.id}>
-                <strong>{review.user_name}:</strong> {review.comment} (Rating: {review.rating})
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-    </div>
-  );
-};
+    return (
+      <div className="business-detail">
+        {business && (
+          <>
+            <h1>{business.name}</h1>
+            <img
+              src={business.image_url}
+              alt={`${business.name}`}
+              style={{ width: '300px' }}
+            />
+            <p>{business.description}</p>
+            <p>Rating: {averageRating} / 5</p>
+  
+            {/* Use BusinessListReviews component here */}
+            <BusinessListReviews businessId={id} />
+          </>
+        )}
+      </div>
+    );
+  };
 
 export default BusinessDetail;

@@ -21,4 +21,4 @@ const Businesses = ({ businesses }) => {
   );
 };
 
-export default Businesses;  // Ensure this line is present
+export default Businesses; 

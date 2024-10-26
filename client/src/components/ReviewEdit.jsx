@@ -7,7 +7,7 @@ const ReviewEdit = ({ review, fetchReviews, setIsEditing }) => {
 
     const handleUpdate = async () => {
         try {
-            const token = localStorage.getItem('token'); // Retrieve token from local storage
+            const token = localStorage.getItem('token'); 
             await axios.put(
                 `/api/reviews/${review.id}`,
                 { review_text: text, rating: rating },
@@ -17,8 +17,8 @@ const ReviewEdit = ({ review, fetchReviews, setIsEditing }) => {
                     },
                 }
             );
-            fetchReviews(); // Refresh reviews
-            setIsEditing(false); // Exit edit mode
+            fetchReviews(); // refresh reviews
+            setIsEditing(false); // exit edit mode
         } catch (ex) {
             console.error('Failed to update review:', ex);
         }

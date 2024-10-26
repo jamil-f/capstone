@@ -2,16 +2,19 @@ const { client } = require("./client");
 
 // Fetch reviews by business ID
 async function fetchReviewsByBusinessId(businessId) {
-    try {
-      const { rows } = await client.query(
-        `SELECT * FROM reviews WHERE business_id = $1::int`,
-        [businessId]
-      );
-      return rows;
-    } catch (err) {
-      throw new Error("Failed to fetch reviews by business ID: " + err.message);
-    }
+  try {
+    const { rows } = await client.query(
+      `SELECT reviews.id, reviews.review_text, reviews.rating, users.username 
+       FROM reviews, users 
+       WHERE reviews.user_id = users.id AND reviews.business_id = $1`,
+      [businessId]
+    );
+    return rows;
+  } catch (err) {
+    console.error("Error fetching reviews:", err);
+    throw new Error("Failed to fetch reviews by business ID.");
   }
+}
 
 async function findExistingReview(userId, businessId) {
     try {
