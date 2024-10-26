@@ -11,7 +11,7 @@ function Register({ setAuth }) {
     e.preventDefault();
     try {
       const response = await axios.post('/api/auth/register', { username, password });
-      console.log(response.data);
+      
 
       // Save the user info or token in state/localStorage and setAuth
       window.localStorage.setItem('token', response.data.token);

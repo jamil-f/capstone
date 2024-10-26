@@ -3,14 +3,12 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const BusinessDetail = () => {
-  const { id } = useParams();  // This will get the business ID from the URL
-  const [business, setBusiness] = useState(null);  // State to store business data
-  const [reviews, setReviews] = useState([])
-  const [loading, setLoading] = useState(true);    // Loading state
-  const [error, setError] = useState(null);        // Error state
-  
+  const { id } = useParams();
+  const [business, setBusiness] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    // Fetch business details when the component mounts
     const fetchBusinessDetails = async () => {
       try {
         const response = await axios.get(`/api/businesses/${id}`);
@@ -21,22 +19,36 @@ const BusinessDetail = () => {
         setLoading(false);
       }
     };
-    
+
     fetchBusinessDetails();
-  }, [id]);  // Dependency on business ID
-  
+  }, [id]);
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
+  const averageRating = business.reviews.length
+    ? (
+        business.reviews.reduce((sum, review) => sum + review.rating, 0) / 
+        business.reviews.length
+      ).toFixed(1)
+    : "No ratings yet";
+
   return (
-    <div>
+    <div className="business-detail">
       {business && (
         <>
           <h1>{business.name}</h1>
+          <img src={business.image_url} alt={`${business.name}`} style={{ width: '300px' }} />
           <p>{business.description}</p>
-          <p>Location: {business.location}</p>
-          <p>Rating: {business.averageRating}</p>
-          {/* You can add more details about the business as needed */}
+          <p>Rating: {averageRating} / 5</p>
+          <h2>Reviews:</h2>
+          <ul>
+            {business.reviews.map((review) => (
+              <li key={review.id}>
+                <strong>{review.user_name}:</strong> {review.comment} (Rating: {review.rating})
+              </li>
+            ))}
+          </ul>
         </>
       )}
     </div>

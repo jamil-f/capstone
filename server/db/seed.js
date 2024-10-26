@@ -13,7 +13,9 @@ const createTables = async () => {
       id SERIAL PRIMARY KEY,
       name VARCHAR(50) UNIQUE NOT NULL,
       owner VARCHAR(100),
-      establishedYear INT
+      establishedYear INT,
+      description TEXT,
+      image_url TEXT
     );
 
     CREATE TABLE users(
@@ -58,8 +60,8 @@ const init = async () => {
     createUser({ username: "curly", password: "c_pw" }),
   ]);
 
-  const business1 = await createBusiness({ name: "Call of Duty", owner: "Activision", establishedYear: 2003 });
-  const business2 = await createBusiness({ name: "Halo", owner: "Microsoft", establishedYear: 2001 });
+  const business1 = await createBusiness({ name: "Call of Duty", owner: "Activision", establishedYear: 2003, description: "A popular first-person shooter gamer series.", image_url: "https://upload.wikimedia.org/wikipedia/en/5/52/Call_of_Duty_Modern_Warfare_2_%282009%29_cover.png" });
+  const business2 = await createBusiness({ name: "Halo", owner: "Microsoft", establishedYear: 2001, description: "A Sci-Fi shooter known for multiplayer.", image_url: "https://upload.wikimedia.org/wikipedia/en/thumb/3/3f/Halo_3_final_boxshot.JPG/220px-Halo_3_final_boxshot.JPG" });
 
   await Promise.all([
     createReview({ userId: moe.id, businessId: business1.id, review_text: "Great game!", rating: 5 }),

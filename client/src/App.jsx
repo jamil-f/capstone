@@ -102,7 +102,6 @@ function App() {
     setAuth(null);
     navigate("/");
   };
-console.log("selectedBusiness", selectedBusiness);
 return (
   <>
     <h1>Acme Business Reviews</h1>
