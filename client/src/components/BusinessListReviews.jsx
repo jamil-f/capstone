@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import ReviewComments from './ReviewComments'; 
 
-const BusinessListReviews = ({ businessId }) => {
+const BusinessListReviews = ({ businessId, currentUserId }) => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -9,7 +10,7 @@ const BusinessListReviews = ({ businessId }) => {
     const fetchReviews = async () => {
       try {
         const response = await axios.get(`/api/reviews/by-business?businessId=${businessId}`);
-        console.log('Fetched reviews:', response.data)
+        console.log('Fetched reviews:', response.data);
         setReviews(response.data);
       } catch (error) {
         console.error('Error fetching reviews:', error);
@@ -20,8 +21,6 @@ const BusinessListReviews = ({ businessId }) => {
     fetchReviews();
   }, [businessId]);
 
-  console.log('Current reviews state:', reviews);
-  console.log('Business ID:', businessId);
   if (loading) return <p>Loading reviews...</p>;
 
   return (
@@ -33,6 +32,8 @@ const BusinessListReviews = ({ businessId }) => {
             <p><strong>Reviewed by:</strong> {review.username || 'Anonymous'}</p>
             <p><strong>Text:</strong> {review.review_text}</p>
             <p><strong>Rating:</strong> {review.rating} / 5</p>
+
+            <ReviewComments reviewId={review.id} currentUserId={currentUserId} />
           </div>
         ))
       ) : (

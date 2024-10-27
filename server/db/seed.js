@@ -27,7 +27,7 @@ const createTables = async () => {
     CREATE TABLE reviews (
       id SERIAL PRIMARY KEY,
       user_id UUID REFERENCES users(id),
-      business_id INTEGER REFERENCES businesses(id), -- Ensure businesses table is created first
+      business_id INTEGER REFERENCES businesses(id),
       review_text TEXT NOT NULL,
       rating INTEGER CHECK (rating >= 1 and rating <= 5),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
