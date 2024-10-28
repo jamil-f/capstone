@@ -60,7 +60,6 @@ async function fetchReviewsByUserId(userId) {
 //     JOIN businesses ON reviews.business_id = business_id
 //     WHERE reviews.user_id = $1
 //   `, [userId]);
-  console.log('Fetched reviews:', rows);
     return rows;
   }
 

@@ -4,6 +4,8 @@ import axios from 'axios';
 const ReviewComments = ({ reviewId, currentUserId }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
+  const [editingCommentId, setEditingCommentId] = useState(null);
+  const [editedComment, setEditedComment] = useState('');
   const [loading, setLoading] = useState(true);
   const [ error, setError] = useState(null);
 
@@ -46,6 +48,38 @@ const ReviewComments = ({ reviewId, currentUserId }) => {
     }
   };
 
+  const handleEdit = (comment) => {
+    setEditingCommentId(comment.id);
+    setEditedComment(comment.comment_text);
+  };
+
+  const saveEdit = async (commentId) => {
+    try {
+      await axios.put(
+        `http://localhost:3000/api/comment/${commentId}`,
+        { comment_text: editedComment },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setComments((prev) =>
+        prev.map((c) => (c.id === commentId ? { ...c, comment_text: editedComment } : c))
+      );
+      setEditingCommentId(null);
+    } catch (error) {
+      console.error('Error editing comment:', error);
+    }
+  };
+
+  const handleDelete = async (commentId) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/comment/${commentId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setComments((prev) => prev.filter((c) => c.id !== commentId));
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
+  };
+
   if (loading) return <p>Loading comments...</p>;
 
   return (
@@ -54,12 +88,32 @@ const ReviewComments = ({ reviewId, currentUserId }) => {
       <ul>
         {comments.map((comment) => (
           <li key={comment.id}>
-            <strong>{comment.username}</strong>: {comment.comment_text}
+            {editingCommentId === comment.id ? (
+              <div>
+                <input
+                  type="text"
+                  value={editedComment}
+                  onChange={(e) => setEditedComment(e.target.value)}
+                />
+                <button onClick={() => saveEdit(comment.id)}>Save</button>
+                <button onClick={() => setEditingCommentId(null)}>Cancel</button>
+              </div>
+            ) : (
+              <div>
+                <strong>{comment.username}</strong>: {comment.comment_text}
+                {comment.user_id === currentUserId && (
+                  <>
+                    <button onClick={() => handleEdit(comment)}>Edit</button>
+                    <button onClick={() => handleDelete(comment.id)}>Delete</button>
+                  </>
+                )}
+              </div>
+            )}
           </li>
         ))}
       </ul>
 
-      {token ? ( // Check if token exists to allow comment submission
+      {token ? (
         <form onSubmit={handleAddComment}>
           <input
             type="text"
@@ -68,7 +122,7 @@ const ReviewComments = ({ reviewId, currentUserId }) => {
             placeholder="Add a comment"
           />
           <button type="submit">Submit</button>
-          {error && <p style={{ color: 'red' }}>{error}</p>} 
+          {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
       ) : (
         <p>Please log in to leave a comment.</p>

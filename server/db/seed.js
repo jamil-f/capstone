@@ -68,7 +68,7 @@ const init = async () => {
     createReview({ userId: lucy.id, businessId: business2.id, review_text: "Not my favorite.", rating: 3 }),
   ]);
 
-  console.log(await fetchUsers());
+  
   client.end();
 };
 

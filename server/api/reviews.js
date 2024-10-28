@@ -61,7 +61,6 @@ router.get("/user/:userId", async (req, res, next) => {
     const { userId } = req.params;
     try {
         const reviews = await fetchReviewsByUserId(userId);
-        console.log(reviews)
         res.status(200).send(reviews);
     } catch (error) {
         next(error);

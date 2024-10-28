@@ -28,19 +28,34 @@ router.post('/', authenticateUser, async (req, res) => {
 });
 
 // Delete a comment
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticateUser, async (req, res) => {
   const { id } = req.params;
+  const user_id = req.user.id; // Get user ID from token
+
   try {
+    // Check if the comment belongs to the authenticated user
+    const result = await client.query('SELECT user_id FROM comments WHERE id = $1', [id]);
+    const comment = result.rows[0];
+
+    if (!comment) {
+      return res.status(404).json({ error: 'Comment not found.' });
+    }
+
+    if (comment.user_id !== user_id) {
+      return res.status(403).json({ error: 'Unauthorized to delete this comment.' });
+    }
+
+    // Delete the comment
     await client.query('DELETE FROM comments WHERE id = $1', [id]);
     res.status(204).send();
   } catch (error) {
+    console.error('Error deleting comment:', error);
     res.status(500).json({ error: error.message });
   }
 });
 
 // Get comments for a specific review
 router.get('/:reviewId/comments', async (req, res) => {
-  console.log('Fetching comments for reviewId:', req.params.reviewId);
   const { reviewId } = req.params;
 
   try {
@@ -56,6 +71,38 @@ router.get('/:reviewId/comments', async (req, res) => {
     res.json(result.rows);
   } catch (error) {
     console.error('Error fetching comments:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Update a comment (only the owner can update)
+router.put('/:id', authenticateUser, async (req, res) => {
+  const { id } = req.params;
+  const { comment_text } = req.body;
+  const user_id = req.user.id; // Get user ID from token
+
+  try {
+    // Check if the comment exists and belongs to the authenticated user
+    const result = await client.query('SELECT user_id FROM comments WHERE id = $1', [id]);
+    const comment = result.rows[0];
+
+    if (!comment) {
+      return res.status(404).json({ error: 'Comment not found.' });
+    }
+
+    if (comment.user_id !== user_id) {
+      return res.status(403).json({ error: 'Unauthorized to edit this comment.' });
+    }
+
+    // Update the comment
+    await client.query(
+      'UPDATE comments SET comment_text = $1 WHERE id = $2 RETURNING *',
+      [comment_text, id]
+    );
+
+    res.status(200).json({ message: 'Comment updated successfully.' });
+  } catch (error) {
+    console.error('Error updating comment:', error);
     res.status(500).json({ error: error.message });
   }
 });
