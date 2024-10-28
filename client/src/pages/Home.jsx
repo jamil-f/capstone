@@ -3,6 +3,13 @@ import AuthForm from "../components/AuthForm/AuthForm";
 const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
   
   const isAuthenticated = auth?.id;
+  console.log(users);
+
+  // Ensure this logic is placed inside the function scope
+  const recentUsers = users
+    ? [...users].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5)
+    : [];
+
   
   // Calculate average rating for businesses
   const averageRating = reviews.length
@@ -27,14 +34,17 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
           </ul>
         )}
   
-        <p>There are {users.length} users registered on the platform.</p>
-        {users.length > 0 && (
-          <ul>
-            {users.slice(0, 3).map((user) => (
-              <li key={user.id}>{user.firstname} {user.lastname}</li>
-            ))}
-          </ul>
-        )}
+  <p>There are {users.length} users registered on the platform.</p>
+      {users.length > 0 && (
+        <ul>
+          {recentUsers.map((user) => (
+    <li key={user.id}>
+      {user.username || 'Anonymous User'}
+    </li>
+  ))}
+        </ul>
+      )}
+
   
         <p>{reviews.length} reviews have been submitted.</p>
         {reviews.length > 0 && (

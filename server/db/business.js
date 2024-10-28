@@ -15,11 +15,26 @@ const createBusiness = async ({ name, owner, establishedYear, description, image
     return response.rows[0];
 }
 const fetchBusinesses = async () => {
-    const SQL = `
-    SELECT * FROM businesses;`
-    const response = await client.query(SQL);
-    return response.rows;
-}
+  const SQL = `
+    SELECT 
+      b.id, 
+      b.name, 
+      b.owner, 
+      b.establishedyear, 
+      b.description, 
+      b.image_url, 
+      COALESCE(
+        json_agg(
+          json_build_object('rating', r.rating)
+        ) FILTER (WHERE r.id IS NOT NULL), '[]'
+      ) AS reviews
+    FROM businesses b
+    LEFT JOIN reviews r ON b.id = r.business_id
+    GROUP BY b.id;
+  `;
+  const response = await client.query(SQL);
+  return response.rows;
+};
 
 const fetchBusinessById = async (id) => {
   try {

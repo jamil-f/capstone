@@ -11,6 +11,12 @@ const Businesses = ({ businesses }) => {
     );
     setFilteredBusinesses(filtered);
   }, [searchTerm, businesses]);
+  
+  const getAverageRating = (reviews) => {
+    if (!reviews || reviews.length === 0) return "No ratings yet";
+    const total = reviews.reduce((sum, review) => sum + review.rating, 0);
+    return (total / reviews.length).toFixed(1);
+  };
 
   return (
     <div>
@@ -29,9 +35,8 @@ const Businesses = ({ businesses }) => {
               <Link to={`/businesses/${business.id}`}>{business.name}</Link>
             </strong>
             {' - '}Owned by {business.owner} (Established: {business.establishedyear})
-            {' - '}Average Rating: {typeof business.average_rating === 'number' 
-              ? business.average_rating.toFixed(1) 
-              : 'No ratings yet'} / 10
+            <br />
+            Average Rating: {getAverageRating(business.reviews)} / 5
           </li>
         ))}
       </ul>
