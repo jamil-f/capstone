@@ -104,7 +104,7 @@ function App() {
   };
 return (
   <>
-    <h1>Acme Business Reviews</h1>
+    <h1>Big Head Game Reviews</h1>
     <nav>
       <Link to="/">Home</Link>
       <Link to="/businesses">Businesses ({businesses.length})</Link>

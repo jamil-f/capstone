@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './Businesses.css';
 
 const Businesses = ({ businesses }) => {
   const [filteredBusinesses, setFilteredBusinesses] = useState(businesses);
@@ -19,29 +20,38 @@ const Businesses = ({ businesses }) => {
   };
 
   return (
-    <div>
+    <div className="businesses-container">
       <h1>Businesses ({filteredBusinesses.length})</h1>
       <input
         type="text"
         placeholder="Search for a business..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ width: '100%', padding: '10px', marginBottom: '20px' }}
+        className="search-input"
       />
-      <ul>
+      <div className="business-grid">
         {filteredBusinesses.map((business) => (
-          <li key={business.id}>
-            <strong>
-              <Link to={`/businesses/${business.id}`}>{business.name}</Link>
-            </strong>
-            {' - '}Owned by {business.owner} (Established: {business.establishedyear})
-            <br />
-            Average Rating: {getAverageRating(business.reviews)} / 5
-          </li>
+          <div key={business.id} className="business-card">
+            <img
+              src={business.image_url}
+              alt={`${business.name} image`}
+              className="business-image"
+            />
+            <div className="business-details">
+              <h3>
+                <Link to={`/businesses/${business.id}`}>{business.name}</Link>
+              </h3>
+              <p><strong>Owned by:</strong> {business.owner}</p>
+              <p><strong>Release Year:</strong> {business.establishedYear}</p>
+              <p><strong>Average Rating:</strong> {getAverageRating(business.reviews)} / 5</p>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
+
+
 
 export default Businesses;

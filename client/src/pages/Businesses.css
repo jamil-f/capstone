@@ -1,0 +1,62 @@
+/* Container for businesses */
+.businesses-container {
+    padding: 20px;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  /* Grid layout for business cards */
+  .business-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 10px 0;
+  }
+  
+  /* Business card styling */
+  .business-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    height: 500px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+  }
+  
+  .business-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Image styling */
+  .business-image {
+    width: 100%;
+    height: 320px;
+    position: top 100px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Business details section */
+  .business-details {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .business-details h3 {
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+  
+  .business-details p {
+    margin: 5px 0;
+    color: #555;
+  }
