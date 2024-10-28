@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import ReviewItem from "./ReviewItem";
+import "./UserDetail.css";
 
 const UserDetail = () => {
   const { id } = useParams(); // Get user ID from URL
@@ -31,22 +32,28 @@ const UserDetail = () => {
   if (!user) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h1>{user.username}</h1>
-      <h2>Reviews:</h2>
-      {reviews.length === 0 ? (
-        <p>No reviews found.</p>
-      ) : (
-        <ul>
-          {reviews.map((review) => (
-            <ReviewItem
-              key={review.id}
-              review={review}
-              fetchReviews={fetchUserReviews} // Pass refresh function to ReviewItem
-            />
-          ))}
-        </ul>
-      )}
+    <div className="user-detail-container">
+      <div className="user-card">
+        <h1 className="user-name">{user.username}</h1>
+        <Link to="/users" className="back-button">← Back to Users</Link>
+      </div>
+
+      <section className="reviews-section">
+        <h2>User Reviews</h2>
+        {reviews.length === 0 ? (
+          <p>No reviews found.</p>
+        ) : (
+          <ul className="review-list">
+            {reviews.map((review) => (
+              <ReviewItem
+                key={review.id}
+                review={review}
+                fetchReviews={fetchUserReviews} 
+              />
+            ))}
+          </ul>
+        )}
+      </section>
     </div>
   );
 };

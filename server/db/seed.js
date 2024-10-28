@@ -60,6 +60,19 @@ const init = async () => {
     createUser({ username: "curly", password: "c_pw" }),
   ]);
 
+  const additionalUsers = await Promise.all([
+    createUser({ username: "gamerboy", password: "password123" }),
+    createUser({ username: "pixielover", password: "pixie@123" }),
+    createUser({ username: "kratosfan", password: "godofwar" }),
+    createUser({ username: "nukedude", password: "fallout4life" }),
+    createUser({ username: "zeldaMaster", password: "hyrule" }),
+    createUser({ username: "smashking", password: "finalsmash" }),
+    createUser({ username: "dragonborn", password: "fusrodah" }),
+    createUser({ username: "witcherwolf", password: "yennifer" }),
+    createUser({ username: "cyberv", password: "nightcity" }),
+    createUser({ username: "overlord", password: "overwatch" }),
+  ]);
+
   const business1 = await createBusiness({
     name: "Call of Duty: Modern Warfare II",
     owner: "Activision",
@@ -205,6 +218,80 @@ const business18 = await createBusiness({
   await Promise.all([
     createReview({ userId: moe.id, businessId: business1.id, review_text: "Great game!", rating: 5 }),
     createReview({ userId: lucy.id, businessId: business2.id, review_text: "Not my favorite.", rating: 3 }),
+  ]);
+  const reviews = await Promise.all([
+    createReview({
+      userId: ethyl.id,
+      businessId: business3.id,
+      review_text: "A masterpiece that redefines platforming!",
+      rating: 5,
+    }),
+    createReview({
+      userId: curly.id,
+      businessId: business4.id,
+      review_text: "The character designs are gorgeous!",
+      rating: 4,
+    }),
+    createReview({
+      userId: additionalUsers[0].id,
+      businessId: business5.id,
+      review_text: "Fortnite isn't for everyone, but I love it.",
+      rating: 4,
+    }),
+    createReview({
+      userId: additionalUsers[1].id,
+      businessId: business6.id,
+      review_text: "Animal Crossing helped me survive quarantine.",
+      rating: 5,
+    }),
+    createReview({
+      userId: additionalUsers[2].id,
+      businessId: business7.id,
+      review_text: "Fallout New Vegas is the best RPG ever made!",
+      rating: 5,
+    }),
+    createReview({
+      userId: additionalUsers[3].id,
+      businessId: business8.id,
+      review_text: "The Witcher 3 deserves all the awards it got.",
+      rating: 5,
+    }),
+    createReview({
+      userId: additionalUsers[4].id,
+      businessId: business9.id,
+      review_text: "Cyberpunk 2077 is so much better now after updates.",
+      rating: 4,
+    }),
+    createReview({
+      userId: additionalUsers[5].id,
+      businessId: business10.id,
+      review_text: "Dota 2 is the king of competitive gaming!",
+      rating: 5,
+    }),
+    createReview({
+      userId: additionalUsers[6].id,
+      businessId: business11.id,
+      review_text: "Red Dead Redemption 2 feels like a living world.",
+      rating: 5,
+    }),
+    createReview({
+      userId: additionalUsers[7].id,
+      businessId: business12.id,
+      review_text: "Elden Ring is brutally hard but so rewarding.",
+      rating: 4,
+    }),
+    createReview({
+      userId: additionalUsers[8].id,
+      businessId: business13.id,
+      review_text: "Hades combines storytelling and gameplay perfectly.",
+      rating: 5,
+    }),
+    createReview({
+      userId: additionalUsers[9].id,
+      businessId: business14.id,
+      review_text: "Sekiro's combat is on another level.",
+      rating: 4,
+    }),
   ]);
 
   

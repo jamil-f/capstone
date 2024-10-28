@@ -1,0 +1,73 @@
+/* Container for the business detail page */
+.business-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  
+  /* Business card layout */
+  .business-card2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    height: 750px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Business image styling */
+  .business-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    object-fit: cover;
+  }
+  
+  /* Business information section */
+  .business-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 10px; /* Adds spacing between elements */
+  }
+  
+  .business-description {
+    margin: 10px 0;
+    color: #555;
+    width: 100%; /* Ensures the description takes full width */
+    text-align: left; /* Aligns text for readability */
+  }
+  
+  .business-rating {
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  /* Back button styling */
+  .back-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3;
+  }
+  
+  

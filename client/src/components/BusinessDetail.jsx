@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import BusinessListReviews from './BusinessListReviews';
+import './BusinessDetail.css';
 
 const BusinessDetail = () => {
   const { id } = useParams();
@@ -35,22 +36,23 @@ const BusinessDetail = () => {
     : "No ratings yet";
 
     return (
-      <div className="business-detail">
-        {business && (
-          <>
+      <div className="business-detail-container">
+        <div className="business-card2">
+          <img
+            src={business.image_url}
+            alt={business.name}
+            className="business-image"
+          />
+          <div className="business-info">
             <h1>{business.name}</h1>
-            <img
-              src={business.image_url}
-              alt={`${business.name}`}
-              style={{ width: '300px' }}
-            />
-            <p>{business.description}</p>
-            <p>Rating: {averageRating} / 5</p>
-  
-            {/* Use BusinessListReviews component here */}
-            <BusinessListReviews businessId={id} />
-          </>
-        )}
+            <p className="business-description">{business.description}</p>
+            <p className="business-rating">Average Rating: {averageRating} / 5</p>
+            <Link to="/businesses" className="back-button">
+              ← Back to Businesses
+            </Link>
+          </div>
+        </div>
+        <BusinessListReviews businessId={id} />
       </div>
     );
   };

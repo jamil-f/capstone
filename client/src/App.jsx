@@ -107,7 +107,7 @@ return (
     <h1>Big Head Game Reviews</h1>
     <nav>
       <Link to="/">Home</Link>
-      <Link to="/businesses">Businesses ({businesses.length})</Link>
+      <Link to="/businesses">Games ({businesses.length})</Link>
       <Link to="/users">Users ({users.length})</Link>
       {!auth && <Link to="/login">Login</Link>}
       {!auth && <Link to="/signup">Signup</Link>}

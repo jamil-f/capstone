@@ -21,10 +21,10 @@ const Businesses = ({ businesses }) => {
 
   return (
     <div className="businesses-container">
-      <h1>Businesses ({filteredBusinesses.length})</h1>
+      <h1>Games ({filteredBusinesses.length})</h1>
       <input
         type="text"
-        placeholder="Search for a business..."
+        placeholder="Search for a game..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="search-input"
@@ -35,7 +35,7 @@ const Businesses = ({ businesses }) => {
             <img
               src={business.image_url}
               alt={`${business.name} image`}
-              className="business-image"
+              className="business-image3"
             />
             <div className="business-details">
               <h3>
