@@ -32,9 +32,12 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
           {businesses.length > 0 ? (
             <div className="business-cards">
               {businesses.slice(0, 3).map((business) => (
-                <div key={business.id} className="business-card">
+                <div key={business.id} className="business-card6">
                   <h3>{business.name}</h3>
-                  <p>Category: {business.category || "Video Game"}</p>
+                  <img
+                    src={business.image_url}
+                  />
+                  <p>Release Year: {business.establishedyear}</p>
                   <p>Average Rating: {averageRating} / 5</p>
                 </div>
               ))}

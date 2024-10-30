@@ -3,7 +3,7 @@ const { client } = require("./client");
 
 const createBusiness = async ({ name, owner, establishedYear, description, image_url }) => {
     const SQL = `
-    INSERT INTO businesses(name, owner, establishedyear, description, image_url) VALUES ($1, $2, $3, $4, $5) RETURNING *;
+    INSERT INTO businesses(name, owner, establishedYear, description, image_url) VALUES ($1, $2, $3, $4, $5) RETURNING *;
     `;
     const response = await client.query(SQL, [
         name,
@@ -20,7 +20,7 @@ const fetchBusinesses = async () => {
       b.id, 
       b.name, 
       b.owner, 
-      b.establishedyear, 
+      b.establishedYear, 
       b.description, 
       b.image_url, 
       COALESCE(
@@ -44,7 +44,7 @@ const fetchBusinessById = async (id) => {
         b.name, 
         b.description, 
         b.image_url, 
-        b.establishedyear, 
+        b.establishedYear, 
         COALESCE(AVG(r.rating), 0) AS averageRating
       FROM businesses b
       LEFT JOIN reviews r ON b.id = r.business_id

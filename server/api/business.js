@@ -5,15 +5,16 @@ const { fetchBusinesses, fetchBusinessById, fetchReviewsByBusinessId } = require
 
 router.get("/", async (req, res, next) => {
   try {
-    res.send(await fetchBusinesses());
+    const businesses = await fetchBusinesses(); 
+    res.send(businesses); 
   } catch (ex) {
-    next(ex);
+    next(ex); 
   }
 });
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const businessId = parseInt(req.params.id, 10); // Ensure ID is an integer
+    const businessId = parseInt(req.params.id, 10); 
     const business = await fetchBusinessById(businessId);
     if (!business) {
       return res.status(404).json({ error: "Business not found" });

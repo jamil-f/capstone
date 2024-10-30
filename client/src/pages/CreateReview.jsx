@@ -6,6 +6,7 @@ const CreateReview = ({ userId }) => {
   const [selectedBusiness, setSelectedBusiness] = useState(''); // State for selected business
   const [reviewText, setReviewText] = useState('');
   const [rating, setRating] = useState(1);
+  const [showMessage, setShowMessage] = useState(false);
   const [error, setError] = useState('');
   const [existingReview, setExistingReview] = useState(null);
 
@@ -48,6 +49,8 @@ const CreateReview = ({ userId }) => {
         businessId: selectedBusiness, // Send selected business ID
         userId,
       });
+      setShowMessage(true);
+      setTimeout(() => setShowMessage(false), 3000);
   
       if (response.status === 201) {
         // Handle success (e.g., redirect or update UI)
@@ -72,7 +75,7 @@ const CreateReview = ({ userId }) => {
         <select
           id="business"
           value={selectedBusiness}
-          onChange={(e) => setSelectedBusiness(e.target.value)} // Update selected business
+          onChange={(e) => setSelectedBusiness(e.target.value)} 
           required
         >
           <option value="">-- Choose a business --</option>
@@ -102,6 +105,11 @@ const CreateReview = ({ userId }) => {
         
         <button type="submit">Submit Review</button>
       </form>
+      {showMessage && (
+        <div className="notification">
+          Review submitted successfully!
+        </div>
+      )}
     </div>
   );
 };

@@ -18,6 +18,7 @@ function App() {
   const [businesses, setBusinesses] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [selectedBusiness, setSelectedBusiness] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
   
@@ -57,6 +58,7 @@ function App() {
         window.localStorage.removeItem("token");
       }
     }
+    setLoading(false);
   };
 
 
@@ -102,6 +104,8 @@ function App() {
     setAuth(null);
     navigate("/");
   };
+if (loading) return <div>Loading..</div>;
+
 return (
   <>
     <h1>Big Head Game Reviews</h1>

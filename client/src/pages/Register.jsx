@@ -19,6 +19,7 @@ function Register({ setAuth }) {
 
       // Redirect to the home page
       navigate('/');
+      window.location.reload(); 
     } catch (error) {
       console.error('Signup failed:', error);
     }

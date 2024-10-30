@@ -18,6 +18,7 @@ const Login = ({ setAuth }) => {
 
       // Redirect to home page after successful login
       navigate('/');
+      window.location.reload();
     } catch (error) {
       console.error('Login failed:', error);
       alert('Invalid credentials. Please try again.');

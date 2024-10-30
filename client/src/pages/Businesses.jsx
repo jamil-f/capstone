@@ -42,7 +42,7 @@ const Businesses = ({ businesses }) => {
                 <Link to={`/businesses/${business.id}`}>{business.name}</Link>
               </h3>
               <p><strong>Owned by:</strong> {business.owner}</p>
-              <p><strong>Release Year:</strong> {business.establishedYear}</p>
+              <p><strong>Release Year:</strong> {business.establishedyear}</p>
               <p><strong>Average Rating:</strong> {getAverageRating(business.reviews)} / 5</p>
             </div>
           </div>
