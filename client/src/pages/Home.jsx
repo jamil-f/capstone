@@ -63,19 +63,24 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
         </section>
   
         <section className="reviews-section">
-          <h2>Recent Reviews</h2>
-          {reviews.length > 0 ? (
-            <ul className="review-list">
-              {reviews.slice(0, 3).map((review) => (
-                <li key={review.id} className="review-item">
-                  {review.review_text} - Rated: {review.rating} / 5
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No reviews yet.</p>
-          )}
-        </section>
+  <h2>Recent Reviews</h2>
+  {reviews.length > 0 ? (
+    <ul className="review-list">
+      {reviews.slice(0, 3).map((review) => (
+        <li key={review.id} className="review-item">
+          <p>
+            <strong>{review.user_name}</strong> reviewed <strong>{review.business_name}</strong>
+          </p>
+          <p>
+            "{review.review_text}" - Rated: {review.rating} / 5
+          </p>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>No reviews yet.</p>
+  )}
+</section>
   
         <section className="auth-section">
           {!isAuthenticated ? (

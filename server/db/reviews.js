@@ -73,9 +73,17 @@ const createReview = async ({ userId, businessId, review_text, rating }) => {
 
 const getReviews = async () => {
   const SQL = `
-    SELECT reviews.*, businesses.name AS business_name 
+    SELECT 
+      reviews.id, 
+      reviews.review_text, 
+      reviews.rating, 
+      reviews.created_at,
+      users.username AS user_name, 
+      businesses.name AS business_name 
     FROM reviews
-    JOIN businesses ON reviews.business_id = businesses.id;
+    JOIN users ON reviews.user_id = users.id
+    JOIN businesses ON reviews.business_id = businesses.id
+    ORDER BY reviews.created_at DESC;
   `;
   const response = await client.query(SQL);
   return response.rows;
