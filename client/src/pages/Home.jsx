@@ -28,7 +28,7 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
         </section>
   
         <section className="highlight-section">
-          <h2>Featured Businesses</h2>
+          <h2>Featured Games</h2>
           {businesses.length > 0 ? (
             <div className="business-cards">
               {businesses.slice(0, 3).map((business) => (
