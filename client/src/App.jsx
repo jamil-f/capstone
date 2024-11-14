@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import BusinessDetail from "./components/BusinessDetail";
 import UserDetail from "./components/UserDetail";
+import "./Navbar.css";
 
 
 function App() {
@@ -108,20 +109,25 @@ if (loading) return <div>Loading..</div>;
 
 return (
   <>
-    <h1>Big Head Game Reviews</h1>
-    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/businesses">Games ({businesses.length})</Link>
-      <Link to="/users">Users ({users.length})</Link>
-      {!auth && <Link to="/login">Login</Link>}
-      {!auth && <Link to="/signup">Signup</Link>}
-      {auth && (
-        <>
-          <Link to="/createReview">Create Review</Link>
-          <button onClick={logout}>Logout {auth.username}</button>
-        </>
-      )}
-    </nav>
+    <header className="navbar">
+      <div className="navbar-container">
+        <div className="logo">
+          <Link to="/">Big Head Reviews</Link>
+        </div>
+        <nav className="nav-links">
+          <Link to="/businesses">Games ({businesses.length})</Link>
+          <Link to="/users">Users ({users.length})</Link>
+          {!auth && <Link to="/login">Login</Link>}
+          {!auth && <Link to="/signup">Signup</Link>}
+          {auth && (
+            <>
+              <Link to="/createReview">Create Review</Link>
+              <button onClick={logout}>Logout {auth.username}</button>
+            </>
+          )}
+        </nav>
+      </div>
+    </header>
 
     <Routes>
       <Route

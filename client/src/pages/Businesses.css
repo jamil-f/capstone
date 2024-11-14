@@ -4,8 +4,9 @@
 }
 
 .search-input {
-  width: 100%;
+  width: 98%;
   padding: 10px;
+  background-color: #f3f9f680;
   margin-bottom: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -23,7 +24,7 @@
 .business-card {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;

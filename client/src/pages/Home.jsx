@@ -48,7 +48,7 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
         </section>
   
         <section className="users-section">
-          <h2>Newest Users</h2>
+          <h2>Featured Users</h2>
           {users.length > 0 ? (
             <ul className="user-list">
               {recentUsers.map((user) => (

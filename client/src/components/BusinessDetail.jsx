@@ -48,7 +48,7 @@ const BusinessDetail = () => {
             <p className="business-description">{business.description}</p>
             <p className="business-rating">Average Rating: {averageRating} / 5</p>
             <Link to="/businesses" className="back-button">
-              ← Back to Businesses
+              ← Back to Games
             </Link>
           </div>
         </div>

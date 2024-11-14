@@ -1,0 +1,44 @@
+.navbar {
+    background-color: #1b1b3a; /* Deep Blue */
+    color: #f4f1de; /* Cream White */
+    padding: 10px 20px;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  
+  .logo a {
+    font-size: 1.5rem;
+    color: #f4f1de; /* Cream White */
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .nav-links a {
+    margin-right: 15px;
+    color: #f4f1de; /* Cream White */
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  
+  .nav-links a:hover {
+    color: #e07a5f; /* Soft Red */
+  }
+  
+  
+  button {
+    background: #81b29a; /* Muted Teal */
+    color: #1b1b3a; /* Deep Blue */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #e07a5f; /* Soft Red */
+    color: #f4f1de; /* Cream White */
+  }

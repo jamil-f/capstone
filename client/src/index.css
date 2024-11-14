@@ -1,5 +1,10 @@
 body {
-  font-family: verdana;
+  background-color: #e3e1e1; /* Light neutral grey */
+  color: #333; /* Dark grey for text for contrast */
+  font-family: Arial, sans-serif; /* Ensures a clean font */
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 form {
   display: flex;

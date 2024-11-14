@@ -26,9 +26,12 @@
   
   .back-button {
     position: absolute;
-    top: 15px;
+    bottom: 70px;
     left: 15px;
     text-decoration: none;
+    background-color: #81b29a;
+    padding: 8px 12px;
+    border-radius: 4px;
     color: #000000;
     font-weight: bold;
     transition: color 0.3s;
