@@ -76,14 +76,14 @@ const init = async () => {
   const business1 = await createBusiness({
     name: "Call of Duty: Modern Warfare II",
     owner: "Activision",
-    establishedYear: 2003,
+    establishedYear: 2009,
     description: "A popular first-person shooter gamer series.",
     image_url: "https://upload.wikimedia.org/wikipedia/en/5/52/Call_of_Duty_Modern_Warfare_2_%282009%29_cover.png" 
   });
   const business2 = await createBusiness({
     name: "Halo 3",
     owner: "Microsoft",
-    establishedYear: 2001,
+    establishedYear: 2007,
     description: "A Sci-Fi shooter known for multiplayer.",
     image_url: "https://upload.wikimedia.org/wikipedia/en/b/b4/Halo_3_final_boxshot.JPG"
   });
@@ -145,7 +145,7 @@ const business9 = await createBusiness({
 
 const business10 = await createBusiness({
   name: "Dota 2",
-  owner: "Valve",
+  owner: "Valve Corporation",
   establishedYear: 2013,
   description: "A multiplayer online battle arena (MOBA) that defined competitive gaming. With an ever-changing meta and a vibrant esports scene, Dota 2 demands skill, strategy, and teamwork from every player.",
   image_url: "https://upload.wikimedia.org/wikipedia/en/3/31/Dota_2_Steam_artwork.jpg"
@@ -213,6 +213,101 @@ const business18 = await createBusiness({
   establishedYear: 2016,
   description: "A dark-fantasy RPG that concludes the Souls series. Known for its challenging gameplay, atmospheric world, and deep lore, it remains one of the most celebrated games in the genre.",
   image_url: "https://upload.wikimedia.org/wikipedia/en/b/bb/Dark_souls_3_cover_art.jpg"
+});
+
+const business19 = await createBusiness({
+  name: "Death Stranding",
+  owner: "Kojima Productions",
+  establishedYear: 2019,
+  description: "Death Stranding is a genre-defying masterpiece from Hideo Kojima that delivers a haunting, emotional experience. Set in a post-apocalyptic America, players take on the role of Sam Porter Bridges, tasked with reconnecting isolated communities. The gameplay revolves around strategic traversal and intense encounters with mysterious BTs. Its stunning landscapes, deep narrative, and thought-provoking themes of connection and isolation make it unforgettable. With an all-star cast, cinematic cutscenes, and a haunting soundtrack, Death Stranding pushes the boundaries of gaming, offering a journey that's both profound and unparalleled in its ambition",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/2/22/Death_Stranding.jpg"
+});
+
+const business20 = await createBusiness({
+  name: "Half Life 2",
+  owner: "Valve Corporation",
+  establishedYear: 2004,
+  description: "Half-Life 2 is a groundbreaking first-person shooter that redefined the genre. Set in a dystopian world under the control of the oppressive Combine, you play as Gordon Freeman, a scientist-turned-rebel fighting to free humanity. The game blends intense combat, mind-bending puzzles, and an immersive narrative to create an unforgettable experience. With its revolutionary physics engine and AI, every encounter feels dynamic and engaging. Iconic weapons like the Gravity Gun and unforgettable characters like Alyx Vance make this journey deeply personal. Half-Life 2 isn't just a game; it's a masterclass in storytelling, atmosphere, and gameplay innovation, cementing its place as one of the greatest games ever made.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/2/25/Half-Life_2_cover.jpg"
+});
+
+const business21 = await createBusiness({
+  name: "Civilization V",
+  owner: "Firaxis Games",
+  establishedYear: 2010,
+  description: "Civilization V is a masterclass in strategy gaming, inviting players to build and rule an empire from the dawn of man to the space age. With a hex-based map and streamlined mechanics, every decision feels impactful, from founding cities to waging war or negotiating alliances. Its deep diplomacy, advanced AI, and varied victory conditions let you shape history your way, whether through cultural dominance, scientific achievement, or military conquest. Stunning visuals, an epic soundtrack, and diverse leaders, each with unique abilities, keep gameplay fresh and engaging. Civ V's expansions add even more depth, making it one of the most rewarding, endlessly replayable strategy games ever crafted.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/5/5c/CIVILIZATION-V-FRONT-OF-BOX.jpg"
+});
+
+const business22 = await createBusiness({
+  name: "Guitar Hero World Tour",
+  owner: "Neversoft",
+  establishedYear: 2008,
+  description: "Guitar Hero World Tour revolutionized music games by expanding beyond guitar to include drums, bass, and vocals, creating a full-band experience. Featuring an iconic setlist with tracks from legends like Metallica, The Eagles, and Van Halen, it delivers an epic mix of rock, metal, and pop. The game introduced a music creation mode, letting players craft and share their own songs. Its refined mechanics, cooperative band play, and competitive modes made it a hit at parties and a staple for music lovers. With realistic instruments, dynamic venues, and a career mode packed with challenges, World Tour became more than a game—it was a cultural phenomenon that rocked living rooms worldwide.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/4/4c/Guitar_Hero_World_Tour.jpg"
+});
+
+const business23 = await createBusiness({
+  name: "Pokemon Platinum",
+  owner: "Game Freak",
+  establishedYear: 2008,
+  description: "Pokémon Platinum, an enhanced version of Pokémon Diamond and Pearl, takes players back to the Sinnoh region with new features, improved gameplay, and an expanded storyline. The game introduces the Distortion World, a surreal realm where players confront the Legendary Pokémon Giratina. With updated graphics and animations, Platinum offers a more immersive experience. Players can challenge the new Battle Frontier, featuring varied battle facilities to test their skills. Sinnoh's Pokédex is expanded to include over 200 Pokémon, adding variety to team-building. The story delves deeper into Team Galactic's schemes, while new Wi-Fi features enhance multiplayer interactions, including trading and battling globally.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/c/ca/Pokemon_Platinum.png"
+});
+
+const business24 = await createBusiness({
+  name: "Jet Set Radio",
+  owner: "Smilebit, BitWorks",
+  establishedYear: 2000,
+  description: "Jet Set Radio is a vibrant, fast-paced action game set in the futuristic city of Tokyo-to, where players join the rebellious GG gang to spread graffiti, reclaim turf, and evade the oppressive authorities. With its iconic cel-shaded art style and an energetic soundtrack blending hip-hop, funk, and electronic beats, the game creates a unique aesthetic. Players perform tricks, grind on rails, and outrun the police, led by the relentless Captain Onishima, while battling rival gangs. The game challenges players to tag various city areas before time runs out, combining stylish movement with creative expression. Jet Set Radio stands out for its bold visuals, addictive gameplay, and cultural impact.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/7/7b/Jetsetradiopalboxart.jpg"
+});
+
+const business25 = await createBusiness({
+  name: "Ratchet & Clank",
+  owner: "Insomniac Games",
+  establishedYear: 2002,
+  description: "Ratchet & Clank (2002) is a groundbreaking action-platformer that follows the adventures of Ratchet, a skilled mechanic, and Clank, his witty robot companion. Set in a vibrant galaxy, the duo teams up to stop the evil Chairman Drek from destroying planets to build a new world for his race. The game blends platforming, puzzle-solving, and combat with an arsenal of inventive weapons and gadgets, such as the Blaster and Swingshot. Each planet offers unique environments, characters, and challenges, encouraging exploration. With its humorous tone, polished gameplay, and stunning visuals for its time, Ratchet & Clank became a beloved classic, laying the foundation for a long-running series.",
+  image_url: "https://psxdatacenter.com/psx2/images2/covers/SCUS-97199.jpg"
+});
+
+const business26 = await createBusiness({
+  name: "Doom",
+  owner: "id Software",
+  establishedYear: 1993,
+  description: "DOOM (1993) revolutionized the gaming world as a fast-paced, first-person shooter that set players loose in a hellish sci-fi world. As a space marine on Mars' moons, players face hordes of demonic enemies after a portal to Hell is opened. Featuring maze-like levels, players navigate through corridors, finding keys, secrets, and powerful weapons like the shotgun, plasma rifle, and the iconic BFG 9000. Known for its intense action, atmospheric sound design, and fluid movement, DOOM introduced multiplayer deathmatches and co-op play, solidifying its place in gaming history. Its innovative 3D graphics, moddable engine, and adrenaline-pumping gameplay made it a timeless classic that shaped the FPS genre.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/5/57/Doom_cover_art.jpg"
+});
+
+const business27 = await createBusiness({
+  name: "Midnight Club: Los Angeles",
+  owner: "Rockstar San Diego",
+  establishedYear: 2008,
+  description: "Midnight Club: Los Angeles is an open-world racing game that puts players behind the wheel in a meticulously recreated version of Los Angeles. Players compete in high-stakes street races, earning money to customize their cars and motorcycles with performance upgrades and aesthetic tweaks. The game features dynamic day-night cycles and weather changes, enhancing its immersive urban atmosphere. With a variety of race types, from standard circuits to high-speed sprints, the gameplay emphasizes speed, precision, and risk-taking. Players can explore the city freely, challenging AI or other players online. Known for its fast-paced action, detailed customization, and seamless open-world design, the game offers a thrilling racing experience.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/e/ea/Midnight_Club-Los_Angeles.jpg"
+});
+
+const business28 = await createBusiness({
+  name: "Sly 3: Honor Among Thieves",
+  owner: "Sucker Punch Productions",
+  establishedYear: 2005,
+  description: "Sly 3: Honor Among Thieves is an action-adventure platformer that follows master thief Sly Cooper and his crew as they attempt to reclaim the Cooper family vault from the villainous Dr. M. The game expands on its predecessors with a diverse roster of playable characters, including Bentley and Murray, each with unique abilities. New allies like Dimitri and the Guru join the heist, adding variety to gameplay. Players explore vibrant, open levels, solving puzzles, pulling off heists, and engaging in stealth-based missions. Mini-games and 3D support add extra depth. With its engaging story, humor, and refined mechanics, Sly 3 delivers a thrilling and cinematic conclusion to the trilogy.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/c/c4/Sly_3.jpg"
+});
+
+const business29 = await createBusiness({
+  name: "Tony Hawk's Underground 2",
+  owner: "Neversoft",
+  establishedYear: 2004,
+  description: "Tony Hawk's Underground 2 takes skateboarding to wild new heights in this over-the-top sequel. Players join Team Hawk or Team Bam in a chaotic “World Destruction Tour,” a globe-trotting competition filled with outrageous stunts and pranks. The game combines classic skateboarding mechanics with hilarious, larger-than-life objectives, letting players pull off tricks, ride vehicles, and interact with diverse environments. The Story Mode blends humor and rebellion, featuring real-life skaters like Tony Hawk and Bam Margera. Customization is a highlight, allowing players to create skaters, parks, and graffiti. With its high-energy soundtrack and diverse challenges, THUG 2 delivers an unforgettable, adrenaline-fueled skateboarding experience.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/f/f8/Tony_Hawks_Underground_2_PS2.jpg"
+});
+const business30 = await createBusiness({
+  name: "Sonic Heroes",
+  owner: "Sonic Team USA",
+  establishedYear: 2003,
+  description: "Sonic Heroes (2003) brings a fresh twist to the Sonic franchise, featuring fast-paced action with a unique team-based gameplay mechanic. Players control one of four teams—Team Sonic, Team Dark, Team Rose, and Team Chaotix—each consisting of three characters with distinct abilities: speed, power, and flight. Switching between characters in real-time adds strategic depth as players race through vibrant levels, defeat enemies, and solve puzzles. The game offers diverse environments, from lush forests to bustling cities, with each team experiencing a different storyline that ties into the overarching plot. Featuring a colorful art style, upbeat soundtrack, and multiplayer modes, Sonic Heroes delivers a dynamic and accessible experience for newcomers and longtime fans alike.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/4/48/Sonic_Heroes_cover.png"
 });
 
   await Promise.all([

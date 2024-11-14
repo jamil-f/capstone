@@ -36,7 +36,7 @@ const BusinessListReviews = ({ businessId, currentUserId }) => {
           </div>
         ))
       ) : (
-        <p>No reviews available for this business.</p>
+        <p>No reviews available for this game.</p>
       )}
     </div>
   );

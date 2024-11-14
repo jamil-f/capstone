@@ -71,14 +71,14 @@ const CreateReview = ({ userId }) => {
       <form onSubmit={handleSubmit}>
         
         {/* Dropdown for selecting a business */}
-        <label htmlFor="business">Select a business:</label>
+        <label htmlFor="business">Select a game:</label>
         <select
           id="business"
           value={selectedBusiness}
           onChange={(e) => setSelectedBusiness(e.target.value)} 
           required
         >
-          <option value="">-- Choose a business --</option>
+          <option value="">-- Choose a game --</option>
           {businesses.map((business) => (
             <option key={business.id} value={business.id}>
               {business.name}

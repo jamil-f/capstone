@@ -22,7 +22,7 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
         <section className="info-section">
           <h2>Platform Overview</h2>
           <p>
-            We currently feature <strong>{businesses.length}</strong> businesses, 
+            We currently feature <strong>{businesses.length}</strong> games, 
             <strong> {users.length}</strong> users, and <strong>{reviews.length}</strong> reviews!
           </p>
         </section>
@@ -82,7 +82,7 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
   )}
 </section>
   
-        <section className="auth-section">
+        {/* <section className="auth-section">
           {!isAuthenticated ? (
             <>
               <AuthForm authAction={authAction} mode="login" />
@@ -91,7 +91,7 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
           ) : (
             <button onClick={logout} className="logout-button">Logout</button>
           )}
-        </section>
+        </section> */}
       </div>
     );
   };

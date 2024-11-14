@@ -6,7 +6,7 @@ const SearchBar = ({ onSearch }) => {
   const handleChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-    onSearch(term); // Send search term to the parent
+    onSearch(term); 
   };
 
   return (
