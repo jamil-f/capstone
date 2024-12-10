@@ -84,7 +84,7 @@ const init = async () => {
     name: "Halo 3",
     owner: "Microsoft",
     establishedYear: 2007,
-    description: "A Sci-Fi shooter known for multiplayer.",
+    description: "Halo 3, released in 2007 by Bungie, is a monumental first-person shooter that defined a generation of gaming and marked a turning point in modern video game history. It brought the original Halo trilogy to a stunning conclusion, delivering a groundbreaking campaign that combined cinematic storytelling with intense action across sprawling environments. The game revolutionized multiplayer with Xbox Live integration, introducing competitive matchmaking, iconic maps, and modes that became staples of the genre. The innovative Forge mode empowered players to create and customize maps, fostering a new era of user-generated content. With its refined gameplay mechanics, seamless co-op experience, and unforgettable moments like the climactic Warthog run, Halo 3 set new standards for visual fidelity, audio design, and online interaction, establishing itself as a cornerstone of the gaming industry and a cultural phenomenon.",
     image_url: "https://upload.wikimedia.org/wikipedia/en/b/b4/Halo_3_final_boxshot.JPG"
   });
   const business3 = await createBusiness({
@@ -123,7 +123,7 @@ const business7 = await createBusiness({
   name: "Fallout: New Vegas",
   owner: "Obsidian Entertainment",
   establishedYear: 2010,
-  description: "A post-apocalyptic RPG masterpiece that revolutionized player choice and narrative freedom. Set in the Mojave Wasteland, New Vegas offers a breathtaking open-world experience where every decision carries weight, from allying with war-torn factions to shaping the fate of New Vegas itself. Obsidian's blend of dark humor, deep moral dilemmas, and unforgettable characters makes this game more than a classic—it’s a cultural phenomenon. With hardcore survival mechanics, multiple endings, and endless replayability, it’s hailed as one of the greatest RPGs ever crafted. Every encounter leaves players questioning their ethics, and every journey feels fresh, whether you’re roaming with the enigmatic Mr. House or rallying a revolution for the NCR. Simply put, New Vegas is where the Fallout series found its soul—unchallenged by time and cemented in the halls of gaming history.",
+  description: "A post-apocalyptic RPG masterpiece that revolutionized player choice and narrative freedom. Set in the Mojave Wasteland, New Vegas offers a breathtaking open-world experience where every decision carries weight, from allying with war-torn factions to shaping the fate of New Vegas itself. Obsidian's blend of dark humor, deep moral dilemmas, and unforgettable characters makes this game more than a classic—it's a cultural phenomenon. With hardcore survival mechanics, multiple endings, and endless replayability, it's hailed as one of the greatest RPGs ever crafted. Every encounter leaves players questioning their ethics, and every journey feels fresh, whether you’re roaming with the enigmatic Mr. House or rallying a revolution for the NCR. Simply put, New Vegas is where the Fallout series found its soul—unchallenged by time and cemented in the halls of gaming history.",
   image_url: "https://upload.wikimedia.org/wikipedia/en/3/34/Fallout_New_Vegas.jpg"
 });
 
@@ -139,7 +139,7 @@ const business9 = await createBusiness({
   name: "Cyberpunk 2077",
   owner: "CD Projekt",
   establishedYear: 2020,
-  description: "Set in the dystopian Night City, Cyberpunk 2077 offers a vast open-world adventure, merging first-person shooting, role-playing mechanics, and immersive storytelling. Despite its rocky launch, it has since become a unique blend of future-tech RPG with unparalleled depth.",
+  description: "Cyberpunk 2077, released in 2020 by CD Projekt Red, launched to massive anticipation but quickly became infamous for its technical issues, especially on older consoles. Despite its ambitious open-world design, immersive narrative, and vibrant Night City setting, the game’s initial state was marred by bugs and performance problems, leading to widespread criticism and refunds. Over time, CD Projekt Red committed to extensive updates, stabilizing the experience and restoring player trust. With the release of the Phantom Liberty DLC in 2023, the game achieved its full potential, offering a gripping spy-thriller expansion, enhanced gameplay mechanics, and a reworked skill system. Combined with its compelling characters, breathtaking visuals, and rich storytelling, Cyberpunk 2077 has transformed into a must-play RPG, earning its place as one of the most remarkable gaming comebacks in history.",
   image_url: "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg"
 });
 
@@ -309,6 +309,84 @@ const business30 = await createBusiness({
   description: "Sonic Heroes (2003) brings a fresh twist to the Sonic franchise, featuring fast-paced action with a unique team-based gameplay mechanic. Players control one of four teams—Team Sonic, Team Dark, Team Rose, and Team Chaotix—each consisting of three characters with distinct abilities: speed, power, and flight. Switching between characters in real-time adds strategic depth as players race through vibrant levels, defeat enemies, and solve puzzles. The game offers diverse environments, from lush forests to bustling cities, with each team experiencing a different storyline that ties into the overarching plot. Featuring a colorful art style, upbeat soundtrack, and multiplayer modes, Sonic Heroes delivers a dynamic and accessible experience for newcomers and longtime fans alike.",
   image_url: "https://upload.wikimedia.org/wikipedia/en/4/48/Sonic_Heroes_cover.png"
 });
+const business31 = await createBusiness({
+  name: "RuneScape",
+  owner: "Jagex",
+  establishedYear: 2001,
+  description: "RuneScape is a fantasy MMORPG that offers an expansive, open-world experience, first released in 2001 by Jagex. Set in the medieval-themed realm of Gielinor, players explore diverse regions such as bustling cities, desolate wilderness, and enchanting dungeons. With a focus on player freedom, RuneScape features no fixed storyline, allowing adventurers to carve their own paths through quests, combat, crafting, and trading. The game boasts a classless progression system, enabling players to train 28 unique skills, including magic, smithing, and fishing. PvE and PvP elements coexist, with iconic bosses and the high-risk Wilderness adding challenge. Its vibrant community and frequent updates ensure evolving content, from seasonal events to major expansions. RuneScape has evolved with versions like RuneScape 3 and Old School RuneScape, maintaining its legacy as a dynamic, ever-growing virtual world.",
+  image_url: "https://cdn2.steamgriddb.com/thumb/1325bf8e00cd6fdecc9c918f58d832ee.jpg"
+});
+const business32 = await createBusiness({
+  name: "NBA Street Vol. 2",
+  owner: "NuFx EA Canada",
+  establishedYear: 2003,
+  description: "NBA Street Vol. 2 is an iconic arcade-style basketball game released by EA Sports BIG in 2003, celebrated for its dynamic gameplay and vibrant streetball culture. Set across urban courts with legendary graffiti and beats, players build a team of streetballers or NBA legends to dominate 3v3 matches. The game blends flashy tricks, jaw-dropping dunks, and fast-paced action with style points earned for creative plays. Its unique “Gamebreaker” feature lets players unleash powerful, score-boosting moves. Featuring iconic players like Michael Jordan, Dr. J, and Magic Johnson, it bridges eras of basketball. With engaging modes like Be a Legend and Pick-Up Game, along with a killer hip-hop soundtrack, NBA Street Vol. 2 is hailed as a timeless classic that captures the spirit of basketball with electrifying energy and fun.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/e/ea/NBA_Street_Vol._2_Coverart.png"
+});
+const business33 = await createBusiness({
+  name: "ToonTown Online",
+  owner: "Disney's Virtual Reality Studio",
+  establishedYear: 2001,
+  description: "Toontown Online was a groundbreaking MMORPG developed by Disney Interactive, capturing the whimsy of classic cartoons. Launched in 2003, the game immersed players in a vibrant world where they created customizable “Toons” to battle humorless robots called “Cogs” attempting to turn the colorful world into a corporate dystopia. Toons used gags like pies, squirting flowers, and anvils to defeat Cogs in turn-based combat. The game encouraged collaboration, with players teaming up to tackle Cog buildings, factories, and the epic Bossbot HQ battles. Toontown featured diverse activities, from fishing and kart racing to owning estates and decorating houses. Its charm lay in its family-friendly humor, engaging gameplay, and a social experience that fostered teamwork and creativity. Though officially closed in 2013, its legacy lives on through fan-made revivals, preserving Toontown's zany, joyful spirit for generations.",
+  image_url: "https://www.vgfacts.com/media/boxart/2/1640.png"
+});
+const business34 = await createBusiness({
+  name: "Left 4 Dead 2",
+  owner: "Valve",
+  establishedYear: 2009,
+  description: "Left 4 Dead 2, released in 2009 by Valve, is a co-op first-person shooter that has become a timeless classic. Set in a post-apocalyptic world, players team up as Survivors battling through relentless hordes of zombies across diverse campaigns, utilizing unique weapons, melee tools, and explosive gadgets. Its hallmark is the AI “Director,” which dynamically adjusts enemy placement and intensity to keep each playthrough fresh and challenging. Beyond its stellar core gameplay, the Steam Workshop has played a crucial role in the game's enduring popularity. Players create and share custom campaigns, maps, character skins, weapons, and mods, injecting endless creativity and replayability. From fan-made levels to complete overhauls, the Workshop has allowed Left 4 Dead 2 to evolve with its community, ensuring its relevance over a decade later as one of the most engaging and replayable co-op experiences in gaming.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/b/ba/Left4Dead2.jpg"
+});
+
+const business35 = await createBusiness({
+  name: "Project Zomboid",
+  owner: "The Indie Stone",
+  establishedYear: 2011,
+  description: "Project Zomboid is a deep and immersive survival game developed by The Indie Stone, currently in early access on Steam. Set in a sprawling, post-apocalyptic world overrun by zombies, it challenges players to survive as long as possible in a sandbox environment where every decision matters. Featuring realistic survival mechanics like hunger, thirst, injuries, and mental health, players must scavenge, build, and fight to endure the inevitable. The game boasts a robust crafting system, base-building, and complex AI, offering endless replayability. Regular updates from a dedicated development team have expanded features like multiplayer, vehicles, and modding support, keeping the community engaged. With a thriving workshop of user-created content and a roadmap promising even more features, Project Zomboid is a must-play for fans of challenging survival experiences and remains one of the most ambitious zombie survival games in development.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/0/0c/Boxshot_of_video_game_Project_zomboid.jpg"
+});
+
+const business36 = await createBusiness({
+  name: "Power Stone 2",
+  owner: "Capcom",
+  establishedYear: 2000,
+  description: "Power Stone 2, released in 2000 by Capcom, is a fast-paced 3D arena fighting game that stands out with its chaotic, multiplayer gameplay and interactive environments. Players select from a colorful roster of characters, battling in multi-tiered stages filled with items, hazards, and Power Stones that unlock transformations and powerful attacks. Supporting up to four players, the game is a beloved party brawler, praised for its dynamic action, vibrant visuals, and strategic depth. In 2025, Capcom will re-release Power Stone 2 as part of the Capcom Fighting Collection 2, alongside classics like Capcom vs. SNK 2 and Project Justice. This version includes online play with rollback netcode, training modes, and quality-of-life improvements, bringing this cult favorite to modern platforms. The re-release offers both nostalgic fans and newcomers a chance to experience this unique, action-packed classic.",
+  image_url: "https://m.media-amazon.com/images/I/51bLRqmzw9L._SX300_SY300_QL70_FMwebp_.jpg"
+});
+
+const business37 = await createBusiness({
+  name: "Mortal Kombat 9",
+  owner: "NetherRealm Studios",
+  establishedYear: 2011,
+  description: "Mortal Kombat 9, released in 2011 by NetherRealm Studios, is a critically acclaimed reboot of the iconic fighting game series. Serving as both a continuation and retelling of the original trilogy's events, it features a cinematic story mode that reimagines Mortal Kombat's lore with gripping twists. The game reintroduces classic characters like Scorpion, Sub-Zero, and Raiden while maintaining the franchise's signature brutal combat and over-the-top fatalities. With accessible mechanics and deep combos, it caters to both casual players and competitive fighters. Mortal Kombat 9 also marked the return of the classic 2D fighting plane, combined with stunning 3D visuals and interactive arenas. It introduced a robust Challenge Tower, tag team battles, and extensive online modes. Praised for its nostalgic yet fresh approach, Mortal Kombat 9 revitalized the series, setting the stage for its modern resurgence.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/1/1f/Mortal_Kombat_box_art.png"
+});
+
+const business38 = await createBusiness({
+  name: "Assassin's' Creed 2",
+  owner: "Ubisoft Montreal",
+  establishedYear: 2009,
+  description: "Assassin's Creed II, released in 2009 by Ubisoft, is a critically acclaimed sequel that elevated the series to new heights. Set during the Italian Renaissance, players follow the journey of Ezio Auditore da Firenze, a young noble turned assassin, seeking revenge and uncovering a vast conspiracy. The game introduced richer storytelling, a charismatic protagonist, and a detailed open world featuring iconic cities like Florence, Venice, and Rome. Gameplay improvements included a broader range of weapons, economic systems, and more fluid parkour mechanics. Assassin's Creed II expanded on the original's stealth-action formula with diverse missions, hidden tombs, and a more dynamic combat system. With its engaging narrative, stunning visuals, and immersive historical setting, it set a new standard for the franchise, cementing Ezio's legacy as one of gaming's most beloved characters and establishing Assassin's Creed as a premier series.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/7/77/Assassins_Creed_2_Box_Art.JPG"
+});
+
+const business39 = await createBusiness({
+  name: "True Crime: Streets of LA",
+  owner: "Luxoflux",
+  establishedYear: 2003,
+  description: "True Crime: Streets of LA, released in 2003 by Luxoflux and Activision, is an open-world action-adventure game that blends gritty storytelling with explosive gameplay. Players take on the role of Nick Kang, a hard-nosed LAPD detective seeking justice in a sprawling, crime-ridden Los Angeles. The game features a mix of third-person shooting, hand-to-hand combat, and high-speed driving across a detailed recreation of LA's streets. With its branching storyline, player choices affect the narrative's outcome, leading to multiple endings. True Crime distinguishes itself with its freedom to explore, dynamic missions, and a morality system that tracks Nick's actions as lawful or rogue. The game's cinematic style, diverse gameplay, and Hollywood-level voice cast, including Christopher Walken and Gary Oldman, earned it praise as a precursor to modern open-world titles, cementing its status as a cult classic.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/6/62/True_Crime_-_Streets_of_LA_coverart.jpg"
+});
+
+const business40 = await createBusiness({
+  name: "HITMAN World of Assinssination",
+  owner: "IO Interactive",
+  establishedYear: 2021,
+  description: "Hitman 3, released in 2021 by IO Interactive, is the stunning conclusion to the World of Assassination trilogy, offering players the ultimate stealth-action experience. As Agent 47, players traverse meticulously crafted sandbox environments across global locations like Dubai, Dartmoor, and Chongqing, executing targets with creativity and precision. The game emphasizes freedom of choice, allowing players to utilize disguises, environmental interactions, and diverse weaponry to complete missions their way. With enhanced visuals, improved AI, and atmospheric storytelling, Hitman 3 elevates the franchise's signature blend of strategy and stealth. It also integrates content from the previous two games, creating a seamless trilogy experience. Post-launch updates, user-created contracts, and VR support further enhance replayability. Praised for its innovation and depth, Hitman 3 is a masterclass in assassination gameplay and a fitting finale to Agent 47's journey.",
+  image_url: "https://upload.wikimedia.org/wikipedia/en/4/4b/Hitman_3_Packart.jpg"
+});
+
+
 
   await Promise.all([
     createReview({ userId: moe.id, businessId: business1.id, review_text: "Great game!", rating: 5 }),
